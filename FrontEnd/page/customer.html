@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+    <meta name="theme-color" content="red">
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width initial, scale=1.0">
+    <link rel="stylesheet" href="../assets/normalize.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../style/customer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<main>
+    <section>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <a href="#" class="profile">
+                <img src="../logo3.png">
+            </a>
+            <a href="#" class="logo ">
+                <i class=''></i>
+                <div class="logo-name"><span>HELLO</span>SHOP</div>
+            </a>
+            <ul class="side-menu">
+                <li class="active"><a><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+                <li><a ><i class='bx bx-user-pin'></i>Employee</a></li>
+                <li ><a ><i class='bx bxs-objects-vertical-bottom'></i>Stock</a></li>
+                <li><a ><i class='bx bx-purchase-tag'></i>Supplier</a></li>
+                <li><a ><i class='bx bx-store-alt'></i>Orders</a></li>
+                <li><a ><i class='bx bx-group'></i>Users</a></li>
+                <li><a ><i class='bx bx-cog'></i>Settings</a></li>
+
+            </ul>
+            <ul class="side-menu">
+                <li id="log_out">
+                    <a href="#" class="logout">
+                        <i class='bx bx-log-out-circle'></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
+
+        <div class="content">
+            <!-- Navbar -->
+            <nav>
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">3</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="../img/other/p1.jpg" height="70" width="70"/>
+                </a>
+            </nav>
+            <!-- End of Navbar -->
+
+            <div class="cusF">
+                <div class="box-info">
+                    <form>
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="cusId" class="form-label"> Customer code</label>
+                                <input id="cusId" name="id" type="text" class="form-control" placeholder="Customer code">
+                            </div>
+                            <div class="col">
+                                <label for="cusName" class="form-label">Customer name</label>
+                                <input id="cusName" name="name" type="text" class="form-control" placeholder="Customer name">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="cusGender" class="form-label">Gender</label>
+                                <select id="cusGender" name="gender" class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="startDate">Start date:</label>
+                                <input type="date" id="startDate" name="startDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" /></div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="cusLevel" class="form-label">Level</label>
+                                <select id="cusLevel" name="level" class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Gold</option>
+                                    <option value="2">Silver</option>
+                                    <option value="3">Bronze</option>
+                                    <option value="4">New</option>
+                                </select></div>
+                            <div class="col">
+                                <label for="points" class="form-label">Total points</label>
+                                <input id="points" name="points" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="birth" class="form-label">Date Of Birth</label>
+                                <input type="date" id="birth" name="birth" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                            </div>
+                            <div class="col">
+                                <label for="contact" class="form-label">Contact Number</label>
+                                <input id="contact" name="contact" type="text" class="form-control" placeholder="Contact Number">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <h6>Address</h6>
+                            <div class="col">
+                                <label for="address1" class="form-label">no or name</label>
+                                <input id="address1" name="address1" type="text" class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="col">
+                                <label for="address2" class="form-label">lane</label>
+                                <input id="address2" name="address2" type="text" class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="col">
+                                <label for="address3" class="form-label">city</label>
+                                <input id="address3" name="address1" type="text" class="form-control" placeholder="Last name">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="birth" pattern=".+@example\.com" size="30" required>
+                            </div>
+                            <div class="col">
+                                <label for="time">Recent purchased</label>
+                                <input type="datetime-local" id="time" name="time" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+<script src="../controller/customer.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
