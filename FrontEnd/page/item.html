@@ -1,0 +1,194 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Item</title>
+  <meta name="theme-color" content="red">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width initial, scale=1.0">
+  <link rel="stylesheet" href="../assets/normalize.css">
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../style/customer.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<main>
+  <section>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="#" class="profile">
+        <img src="../logo3.png">
+      </a>
+      <a href="#" class="logo ">
+        <i class=''></i>
+        <div class="logo-name"><span>HELLO</span>SHOP</div>
+      </a>
+      <ul class="side-menu">
+        <li class="active"><a><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+        <li><a ><i class='bx bx-user-pin'></i>Employee</a></li>
+        <li ><a ><i class='bx bxs-objects-vertical-bottom'></i>Stock</a></li>
+        <li><a ><i class='bx bx-purchase-tag'></i>Supplier</a></li>
+        <li><a ><i class='bx bx-store-alt'></i>Orders</a></li>
+        <li><a ><i class='bx bx-group'></i>Users</a></li>
+        <li><a ><i class='bx bx-cog'></i>Settings</a></li>
+
+      </ul>
+      <ul class="side-menu">
+        <li id="log_out">
+          <a href="#" class="logout">
+            <i class='bx bx-log-out-circle'></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <div class="content">
+      <!-- Navbar -->
+      <nav>
+        <a href="#" class="notif">
+          <i class='bx bx-bell'></i>
+          <span class="count">3</span>
+        </a>
+        <a href="#" class="profile">
+          <img src="../img/other/p1.jpg" height="70" width="70"/>
+        </a>
+      </nav>
+      <!-- End of Navbar -->
+
+      <h1>Item Form </h1>
+      <div class="cusF">
+        <div class="box-info">
+          <form >
+            <div class="row g-5 mb-4">
+              <div class="col">
+                <label for="itemId" class="form-label"> Item code</label>
+                <input id="itemId" name="id" type="text" class="form-control">
+              </div>
+              <div class="col">
+                <label for="itemName" class="form-label">Item name</label>
+                <input id="itemName" name="name" type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row g-5 mb-4">
+              <div class="col">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" name="category" class="form-select" aria-label="Default select example">
+                  <option selected></option>
+                  <option value="1">Men</option>
+                  <option value="2">Women</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="size" class="form-label">Size</label>
+                <select id="size" name="size" class="form-select" aria-label="Default select example">
+                  <option selected></option>
+                  <option value="1">Size 5</option>
+                  <option value="2">Size 6</option>
+                  <option value="3">Size 7</option>
+                  <option value="4">Size 8</option>
+                  <option value="5">Size 9</option>
+                  <option value="6">Size 10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col mb-2">
+                <label for="supCode" class="form-label">Supplier Code</label>
+                <input id="supCode" name="supCode" type="text" class="form-control">
+              </div>
+              <div class="col mb-2">
+                <label for="supName" class="form-label">Supplier Name</label>
+                <input id="supName" name="supName" type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row  mb-3 border border-dark-subtle">
+              <div class="col mt-3 ">
+                <label for="priceS" class="form-label">Unit Price-Sale</label>
+                <input id="priceS" name="priceS" type="text" class="form-control">
+              </div>
+              <div class="col mb-5 mt-3">
+                <label for="priceB" class="form-label">unit Price-Buy</label>
+                <input id="priceB" name="priceB" type="text" class="form-control">
+              </div>
+              <div class="col mb-2 mt-3">
+                <label for="profit" class="form-label">Expected Profit</label>
+                <input id="profit" name="profit" type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="row g-5 mb-4">
+              <div class="col">
+                <label for="profitMargin" class="form-label">Profit margin</label>
+                <input id="profitMargin" name="profitMargin" type="text" class="form-control">
+              </div>
+              <div class="col">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" id="status" name="birth" class="form-control">
+              </div>
+            </div>
+
+            <div class="input-group mb-3">
+              <input type="file" class="form-control" id="itemPic">
+              <label class="input-group-text bg-danger text-white" for="itemPic">Upload</label>
+            </div>
+
+            <div class="button">
+              <button class="animated-button save"><span> Save</span><span class="saveS"></span></button>
+              <button class="animated-button update"><span>Update</span><span class="updateS"></span></button>
+              <button class="animated-button delete"><span>Delete</span><span class="deleteS"></span></button>
+            </div>
+
+          </form>
+        </div>
+
+
+
+        <div class="table-data">
+          <div class="box-info-tbl">
+            <table class="table table-bordered table-hover ">
+              <thead class="table-success ">
+              <tr>
+                <th>Item code</th>
+                <th>Item Name</th>
+                <th>Item Picture</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Supplier Code</th>
+                <th>Supplier Name</th>
+                <th>Unit price-Sale</th>
+                <th>Unit price-Buy</th>
+                <th>Expected Profit</th>
+                <th>Profit margin</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+
+              <tbody id="tblEmployee">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+<script src="../controller/customer.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

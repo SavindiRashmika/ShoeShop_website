@@ -313,6 +313,7 @@ h1{
 
 /*--------button--------*/
 .button{
+    width: 70%;
     position: relative;
     left: 50%;
     margin-top: 10%;
