@@ -3,7 +3,7 @@
 :root {
     --poppins: 'Poppins', sans-serif;
 
-    --light: #f6f6f9;
+    --light: #F9F9F9;
     --primary: #1976D2;
     --light-primary: #CFE8FF;
     --grey: #eee;
@@ -103,7 +103,7 @@ body{
 }
 
 .sidebar .side-menu > li{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #log_out{
@@ -271,11 +271,44 @@ body{
 
 
 
-
+.content h1{
+    font-size: 36px;
+    font-weight: 600;
+    margin: 20px 0 0 50px;
+    color: var(--dark);
+}
 .content .cusF {
-    width: 100%;
+    /*width: 90%;*/
     padding: 36px 24px;
     font-family: var(--poppins);
-    max-height: calc(100vh - 56px);
     overflow-y: auto;
 }
+
+.content .cusF .box-info{
+    width: 80%;
+    padding: 40px;
+    background: var(--light);
+    border-radius: 20px;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1{
+    margin: 10px 50px 0 0;
+}
+
+.box-info-tbl{
+    overflow-y: auto;
+    width: 90%;
+    padding: 40px;
+    background: var(--light);
+    border-radius: 20px;
+    margin-left: 5%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
