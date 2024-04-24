@@ -15,6 +15,8 @@
     --light-warning: #FFF2C6;
     --other: #AE445A;
     --light-success: #BBF7D0;
+    --orange: #FD7238;
+    --light-orange: #FFE0D3;
 }
 
 *{
@@ -188,7 +190,7 @@ body{
     color: var(--danger);
 }
 
-.content{
+.content, .dash{
     position: relative;
     width: calc(100% - 230px);
     left: 230px;
@@ -340,7 +342,8 @@ body{
     margin: 20px 0 0 50px;
     color: var(--dark);
 }
-.content .cusF {
+
+.content .cusF ,main .dash {
     /*width: 90%;*/
     padding: 36px 24px;
     font-family: var(--poppins);
