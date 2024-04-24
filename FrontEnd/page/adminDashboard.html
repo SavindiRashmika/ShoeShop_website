@@ -1,10 +1,109 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cashier Item</title>
+    <meta name="theme-color" content="red">
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width initial, scale=1.0">
+    <link rel="stylesheet" href="../assets/normalize.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
+<main>
+    <section>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <a href="#" class="profile">
+                <img src="../logo3.png">
+            </a>
+            <a href="#" class="logo ">
+                <i class=''></i>
+                <div class="logo-name"><span>HELLO</span>SHOP</div>
+            </a>
+            <ul class="side-menu">
+                <li class="active"><a href="../page/adminDashboard.html"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
+                <li><a href="../page/customer.html"><i class='bx bx-user-pin'></i><span> Customer </span></a></li>
+                <li><a href="../page/style"><i class='bx bxs-objects-vertical-bottom'></i><span>Sales</span></a></li>
+                <li><a href="../page/viewEmployee.html"><i class='bx bx-purchase-tag'></i><span>Employee</span></a></li>
+                <li><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i><span>Stock</span></a></li>
+                <li><a href="../page/viewSupplier.html"><i class='bx bx-group'></i><span>Supplier</span></a></li>
+                <li><a href="../page/style"><i class='bx bx-cog'></i><span>Settings</span></a></li>
+            </ul>
+            <ul class="side-menu">
+                <li id="log_out">
+                    <a href="#" class="logout">
+                        <i class='bx bx-log-out-circle'></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
 
+        <div class="content">
+            <!-- Navbar -->
+            <nav>
+                <i class='bx bx-menu' ></i>
+                <form action="#">
+                    <div class="form-input">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                    </div>
+                </form>
+
+
+                <label for="theme-toggle" class="theme-toggle"></label>
+                <input type="checkbox" id="theme-toggle" hidden>
+
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">3</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="../img/other/p1.jpg" height="70" width="70"/>
+                </a>
+            </nav>
+            <!-- End of Navbar -->
+        </div>
+    </section>
+
+    <section>
+        <ul class="box-info">
+            <li>
+                <i class='bx bxs-calendar-check' ></i>
+                <span class="text">
+						<h3>1020</h3>
+						<p>New Order</p>
+					</span>
+            </li>
+            <li>
+                <i class='bx bxs-group' ></i>
+                <span class="text">
+						<h3>2834</h3>
+						<p>Visitors</p>
+					</span>
+            </li>
+            <li>
+                <i class='bx bxs-dollar-circle' ></i>
+                <span class="text">
+						<h3>$2543</h3>
+						<p>Total Sales</p>
+					</span>
+            </li>
+        </ul>
+
+    </section>
+
+
+</main>
+
+<script src="../controller/customer.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
