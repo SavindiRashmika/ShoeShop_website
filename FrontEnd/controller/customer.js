@@ -29,27 +29,3 @@ toggler.addEventListener('change', function () {
     }
 });
 
-/*
-$('#Dashboard').css('display','block');
-$('#Order').css('display','none');
-$('#Stock').css('display','none');
-$('#Employee').css('display','none');
-
-$('.side-menu>li').eq(0).on('click', () => {
-    $('#Dashboard').css('display','block');
-    $('#Stock').css('display','none');
-    $('#Employee').css('display','none');
-
-})
-$('.side-menu>li').eq(2).on('click', () => {
-    $('#Dashboard').css('display','none');
-    $('#Stock').css('display','block');
-    $('#Employee').css('display','none');
-
-})
-$('.side-menu>li').eq(3).on('click', () => {
-    $('#Dashboard').css('display','none');
-    $('#Stock').css('display','none');
-    $('#Employee').css('display','block');
-
-})*/

@@ -1,0 +1,231 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view Employee</title>
+    <meta name="theme-color" content="red">
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width initial, scale=1.0">
+    <link rel="stylesheet" href="../assets/normalize.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../style/customer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+<main>
+    <section>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <a href="#" class="profile">
+                <img src="../logo3.png">
+            </a>
+            <a href="#" class="logo ">
+                <i class=''></i>
+                <div class="logo-name"><span>HELLO</span>SHOP</div>
+            </a>
+            <ul class="side-menu">
+                <li class="active"><a><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+                <li><a ><i class='bx bx-user-pin'></i>Employee</a></li>
+                <li ><a ><i class='bx bxs-objects-vertical-bottom'></i>Stock</a></li>
+                <li><a ><i class='bx bx-purchase-tag'></i>Supplier</a></li>
+                <li><a ><i class='bx bx-store-alt'></i>Orders</a></li>
+                <li><a ><i class='bx bx-group'></i>Users</a></li>
+                <li><a ><i class='bx bx-cog'></i>Settings</a></li>
+
+            </ul>
+            <ul class="side-menu">
+                <li id="log_out">
+                    <a href="#" class="logout">
+                        <i class='bx bx-log-out-circle'></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
+
+        <div class="content">
+            <!-- Navbar -->
+            <nav>
+                <i class='bx bx-menu' ></i>
+                <form action="#">
+                    <div class="form-input">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+                    </div>
+                </form>
+
+
+                <label for="switch-mode" class="switch-mode"></label>
+                <input type="checkbox" id="switch-mode" hidden>
+
+                <a href="#" class="notif">
+                    <i class='bx bx-bell'></i>
+                    <span class="count">3</span>
+                </a>
+                <a href="#" class="profile">
+                    <img src="../img/other/p1.jpg" height="70" width="70"/>
+                </a>
+            </nav>
+            <!-- End of Navbar -->
+
+            <h1>Employee Form </h1>
+            <div class="cusF">
+                <div class="box-info">
+                    <form >
+                        <div class="row g-5 mb-4">
+                            <div class="col">
+                                <label for="empId" class="form-label"> Employee code</label>
+                                <input id="empId" name="id" type="text" class="form-control" disabled>
+                            </div>
+                            <div class="col">
+                                <label for="empName" class="form-label">Employee name</label>
+                                <input id="empName" name="name" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row g-5 mb-4">
+                            <div class="col">
+                                <label for="status" class="form-label">Status</label>
+                                <input type="text" id="status" name="birth" class="form-control" disabled>
+                            </div>
+                            <div class="col mb-2">
+                                <label for="designation" class="form-label">Designation</label>
+                                <input id="designation" name="designation" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row g-5 mb-4">
+                            <div class="col">
+                                <label for="empGender" class="form-label">Gender</label>
+                                <select id="empGender" name="gender" class="form-select" aria-label="Default select example" disabled>
+                                    <option selected></option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                            <div class="col mb-2">
+                                <label for="email" class="form-label">Email</label><br>
+                                <input type="email" id="email" name="birth" pattern=".+@example\.com" size="30" disabled required>
+                            </div>
+                        </div>
+
+                        <div class="row g-5 mb-4">
+                            <div class="col">
+                                <label for="role" class="form-label">Role</label>
+                                <select id="role" name="level" class="form-select" aria-label="Default select example">
+                                    <option selected></option>
+                                    <option value="1">Manager</option>
+                                    <option value="2">Accountant</option>
+                                    <option value="3">Senior Sales Assistant</option>
+                                    <option value="4">SalesAssistant</option>
+                                </select></div>
+                            <div class="col">
+                                <label for="branch" class="form-label">Branch</label>
+                                <input id="branch" name="branch" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2  mb-5 border border-dark-subtle">
+                            <h6 class="mt-2">Address</h6>
+                            <div class="col mb-2">
+                                <label for="address1" class="form-label">no or name</label>
+                                <input id="address1" name="address1" type="text" class="form-control" disabled>
+                            </div>
+                            <div class="col mb-5">
+                                <label for="address2" class="form-label">Lane</label>
+                                <input id="address2" name="address2" type="text" class="form-control" disabled>
+                            </div>
+                            <div class="col mb-2">
+                                <label for="address3" class="form-label">City</label>
+                                <input id="address3" name="address1" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row  mb-3 border border-dark-subtle">
+                            <div class="col mt-3 ">
+                                <label for="empContact" class="form-label">Contact Number</label>
+                                <input id="empContact" name="contact" type="text" class="form-control">
+                            </div>
+                            <div class="col mb-5 mt-3">
+                                <label for="eContact" class="form-label">Emergency Contact</label>
+                                <input id="eContact" name="eContact" type="text" class="form-control" disabled>
+                            </div>
+                            <div class="col mb-2 mt-3">
+                                <label for="person" class="form-label">Nominated Person Name</label>
+                                <input id="person" name="person" type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row g-5 mb-5">
+                            <div class="col">
+                                <label for="birth" class="form-label">Date Of Birth</label>
+                                <input type="date" id="birth" name="birth" value="2018-07-22" disabled min="2018-01-01" max="2018-12-31"  />
+                            </div>
+                            <div class="col">
+                                <label for="startDate" class="mb-2 w-50">Join date:</label>
+                                <input type="date" id="startDate" name="startDate" value="2018-07-22" disabled min="2018-01-01" max="2018-12-31" />
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="inputGroupFile02" disabled>
+                            <label class="input-group-text bg-danger text-white" for="inputGroupFile02">Upload</label>
+                        </div>
+
+                        <div class="button">
+                            <button class="animated-button update" style="left: 270px"><span>Update</span><span class="updateS"></span></button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+                <div class="table-data">
+                    <div class="box-info-tbl">
+                        <table class="table table-bordered table-hover ">
+                            <thead class="table-success ">
+                            <tr>
+                                <th>Employee code</th>
+                                <th>Employee Name</th>
+                                <th>Employee Profile Pic</th>
+                                <th>Gender</th>
+                                <th>Status</th>
+                                <th>Designation</th>
+                                <th>Access Role</th>
+                                <th>Date of Join</th>
+                                <th>DOB</th>
+                                <th>Attached Branch</th>
+                                <th>Address</th>
+                                <th>Contact No</th>
+                                <th>Inform in case of emergency</th>
+                                <th>Email</th>
+                                <th>Emergency Contact</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="tblEmployee">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+<script src="../controller/customer.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
