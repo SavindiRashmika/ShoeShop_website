@@ -68,7 +68,7 @@ body{
 }*/
 
 .sidebar.close{
-    width: 60px;
+    width: 90px;
 }
 
 .sidebar .logo{
@@ -77,7 +77,7 @@ body{
     height: 56px;
     display: flex;
     align-items: center;
-    color: var(--primary);
+   /* color: var(--primary);*/
     z-index: 500;
     padding-bottom: 20px;
     box-sizing: content-box;
@@ -118,6 +118,13 @@ body{
     padding: 4px;
 }
 
+.sidebar.close ~ .content {
+    width: calc(100% - 90px);
+    left: 90px;
+}
+.sidebar.close .profile img,.sidebar.close .logo-name {
+    display: none;
+}
 .sidebar .side-menu li.active{
     background: var(--grey);
     position: relative;
@@ -218,12 +225,72 @@ body{
     color: var(--dark);
 }
 
+.content nav form{
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
 
+.content nav form .form-input{
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+
+.content nav form .form-input input{
+    flex-grow: 1;
+    padding: 0 16px;
+    height: 100%;
+    border: none;
+    background: var(--grey);
+    border-radius: 36px 0 0 36px;
+    outline: none;
+    width: 100%;
+    color: var(--dark);
+}
+
+.content nav form .form-input button{
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary);
+    color: var(--light);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 36px 36px 0;
+    cursor: pointer;
+}
+.content nav .theme-toggle{
+    display: block;
+    min-width: 50px;
+    height: 25px;
+    background: var(--grey);
+    cursor: pointer;
+    position: relative;
+    border-radius: 25px;
+}
+
+.content nav .theme-toggle::before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(25px - 4px);
+    background: var(--primary);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.content nav #theme-toggle:checked+.theme-toggle::before{
+    left: calc(100% - (25px - 4px) - 2px);
+}
 .content nav .notif{
     font-size: 24px;
-    margin-top: 8px;
     position: relative;
-    left: 91%;
 }
 
 .content nav .notif .count{
@@ -248,9 +315,6 @@ body{
     height: 36px;
     object-fit: cover;
     border-radius: 50%;
-    margin-top: 10px;
-    position: absolute;
-    left: 93%;
 }
 
 .profile img{

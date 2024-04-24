@@ -19,6 +19,16 @@ menuBar.addEventListener('click', function () {
     sideBar.classList.toggle('close');
 });
 
+const toggler = document.getElementById('theme-toggle');
+
+toggler.addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
+});
+
 /*
 $('#Dashboard').css('display','block');
 $('#Order').css('display','none');
