@@ -1,10 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Josefin+Sans:wght@400;500&family=Luckiest+Guy&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@200;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap');
 
-
 #box{
-    width: 730px;
-    height: 400px;
+    width: 710px;
+    height: 430px;
     border: 1px solid black;
     position: absolute;
     top: 0;
@@ -28,7 +27,7 @@
 
 img{
     width: 350px;
-    height: 398px;
+    height: 428px;
     border-radius: 20px 0 0 20px;
 }
 
@@ -44,15 +43,6 @@ img{
 
 
 /*--------button--------*/
-/*button{
-    width: 70%;
-    position: relative;
-    left: 50%;
-    margin-top: 10%;
-}*/
-/*.form-label{
-    color: var(--dark);
-}*/
 .animated-button {
     width: 120px;
     position: relative;
@@ -85,7 +75,6 @@ img{
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: var(--other);
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
