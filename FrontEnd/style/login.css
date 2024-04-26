@@ -1,0 +1,110 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Josefin+Sans:wght@400;500&family=Luckiest+Guy&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@200;400;500;600;700;800&family=Ubuntu:wght@400;500;700&display=swap');
+
+
+#box{
+    width: 730px;
+    height: 400px;
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+
+#h5,  .animated-button{
+    font-family: PT Serif,sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    position: relative;
+    left: 30%;
+}
+
+img{
+    width: 350px;
+    height: 398px;
+    border-radius: 20px 0 0 20px;
+}
+
+.box-x{
+    display: flex;
+    flex-direction: row;
+}
+
+.form{
+    width: 100%;
+    padding: 20px 40px;
+}
+
+
+/*--------button--------*/
+/*button{
+    width: 70%;
+    position: relative;
+    left: 50%;
+    margin-top: 10%;
+}*/
+/*.form-label{
+    color: var(--dark);
+}*/
+.animated-button {
+    width: 120px;
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    font-size: 16px;
+    opacity: 0.9;
+    font-weight: 600;
+    color: var(--light);
+    margin-right: 10px;
+    /*box-shadow: 0 0 0 3px #ffffff20;*/
+    /*box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px 0px, rgba(0, 0, 0, 0.22) 0px 15px 12px 0px;*/
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    border-radius: 20px;
+    margin-top: 5%;
+}
+.save{
+    background: linear-gradient(135deg, hsla(348, 44%, 47%, 1) 26%, hsla(210, 79%, 46%, 1) 100%);
+    color: #eeeeee;
+}
+
+.animated-button span:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--other);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.animated-button span:first-child {
+    position: relative;
+    z-index: 1;
+}
+.save:hover {
+    box-shadow: 0 0 0 5px #E9A89B;
+    border-radius: 20px;
+    color: var(--other);
+}
+.animated-button:active {
+    scale: 0.95;
+}
+.animated-button:hover span:last-child {
+    width: 150px;
+    height: 150px;
+    opacity: 1;
+}
+/*------button end-------*/
