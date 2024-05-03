@@ -40,7 +40,15 @@ img{
     width: 100%;
     padding: 20px 40px;
 }
-
+.log{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 26%;
+    top: 18%;
+    z-index: 2;
+    border-radius: 100px;
+}
 
 /*--------button--------*/
 .animated-button {

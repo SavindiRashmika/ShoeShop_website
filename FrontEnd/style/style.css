@@ -187,7 +187,7 @@ body{
 .sidebar .side-menu li a .bx{
     min-width: calc(60px - ((4px + 6px) * 2));
     display: flex;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     justify-content: center;
 }
 
@@ -195,13 +195,15 @@ body{
     color: var(--danger);
 }
 
-.content, .dash{
+
+
+
+.content{
     position: relative;
     width: calc(100% - 230px);
     left: 230px;
     transition: all 0.5s ease;
 }
-
 
 .content nav{
     height: 56px;
@@ -229,6 +231,18 @@ body{
 
 .content nav a{
     color: var(--dark);
+}
+
+.content nav .bx.bx-menu {
+    cursor: pointer;
+    color: var(--dark);
+}
+.content nav .nav-link {
+    font-size: 16px;
+    transition: .3s ease;
+}
+.content nav .nav-link:hover {
+    color: var(--primary);
 }
 
 .content nav form{
@@ -291,7 +305,7 @@ body{
     transition: all 0.3s ease;
 }
 
-.content nav #theme-toggle:checked+.theme-toggle::before{
+.content nav #theme-toggle:checked + .theme-toggle::before{
     left: calc(100% - (25px - 4px) - 2px);
 }
 .content nav .notif{
@@ -348,7 +362,7 @@ body{
     color: var(--dark);
 }
 
-.content .cusF ,main .dash {
+.content .cusF {
     /*width: 90%;*/
     padding: 36px 24px;
     font-family: var(--poppins);
@@ -459,4 +473,3 @@ h1{
 
 
 /*-------------------------------------------*/
-
