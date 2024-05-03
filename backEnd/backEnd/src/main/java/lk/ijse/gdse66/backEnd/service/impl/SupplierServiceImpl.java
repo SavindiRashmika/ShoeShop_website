@@ -25,7 +25,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void saveSupplier(SupplierDTO dto) {
-        if (!supplierRepo.existsById(dto.getCode())){
+        if (supplierRepo.existsById(dto.getCode())){
             throw new RuntimeException("Supplier Already exist. Please enter another id..!");
         }
         supplierRepo.save(mapper.map(dto, Supplier.class));
@@ -60,7 +60,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public ArrayList<SupplierDTO> loadAllSupplier() {
-        return mapper.map(supplierRepo.findAll(), new TypeToken<ArrayList<EmployeeDTO>>() {
+        return mapper.map(supplierRepo.findAll(), new TypeToken<ArrayList<SupplierDTO>>() {
         }.getType());
     }
 
