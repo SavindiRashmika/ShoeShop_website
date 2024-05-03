@@ -315,8 +315,71 @@ $("#btnDelete").click(function () {
     });
 });
 
+$("#search_Id").on("keypress", function (event) {
+    if (event.which === 13) {
+        var search = $("#search_Id").val();
+        $("#tblEmployee").empty();
+        $.ajax({
+            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?empId=" + search,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                $("#empId").val(res.code);
+                $("#empName").val(res.name);
+                $("#empGender").val(res.gender);
+                $("#status").val(res.status);
+                $("#designation").val(res.designation);
+                $("#email").val(res.email);
+                $("#role").val(res.role);
+                $("#branch").val(res.branch);
+                $("#address1").val(res.address1);
+                $("#address2").val(res.address2);
+                $("#address3").val(res.address3);
+                $("#empContact").val(res.contact);
+                $("#person").val(res.person);
+                $("#birth").val(res.birth);
+                $("#startDate").val(res.joinDate);
+                $("#eContact").val(res.emgContact);
 
+                let row = "<tr><td>" + res.code + "</td><td>" + res.name + "</td><td>" + res.gender + "</td><td>" + res.status + "</td><td>" + res.designation + "</td><td>" + res.role + "</td><td>" + res.joinDate + "</td><td>" + res.dob + "</td><td>" + res.branch + "</td><td>" + addressColumn + "</td><td>" + res.contact + "</td><td>" + res.person + "</td><td>" + res.eContact + "</td><td>" + res.email + "</td></tr>";
+                $("#tblEmployee").append(row);
+            },
+            error: function (error) {
+                loadAllEmp();
+                let message = JSON.parse(error.responseText).message;
+                console.log(message);
+            }
+        })
+    }
 
+});
+
+$("#searchCusId").on("keypress", function (event) {
+    if (event.which === 13) {
+        var search = $("#searchCusId").val();
+        $("#customerTable").empty();
+        $.ajax({
+            url: baseUrl + "customer/searchCusId/?id="+ search,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                let row = "<tr><td>" + res.id + "</td><td>" + res.name + "</td><td>" + res.address + "</td><td>" + res.salary + "</td></tr>";
+                $("#").append(row);
+                blindClickEventsE();
+            },
+            error: function (error) {
+                loadAllCustomer();
+                let message = JSON.parse(error.responseText).message;
+                emptyMassage(message);
+            }
+        })
+    }
+
+});
 
 
 
