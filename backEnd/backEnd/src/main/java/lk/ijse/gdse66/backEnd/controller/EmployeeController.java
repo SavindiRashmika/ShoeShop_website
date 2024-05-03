@@ -4,15 +4,10 @@ package lk.ijse.gdse66.backEnd.controller;
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
 import lk.ijse.gdse66.backEnd.embeded.Address;
-import lk.ijse.gdse66.backEnd.enums.Designation;
-import lk.ijse.gdse66.backEnd.enums.Gender;
-import lk.ijse.gdse66.backEnd.enums.Role;
 import lk.ijse.gdse66.backEnd.service.EmployeeService;
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
-import lk.ijse.gdse66.backEnd.util.UtilMatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -59,11 +54,11 @@ public class EmployeeController {
         return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
-    /*@ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchEmployee")
     public EmployeeDTO searchEmpId(String code){
         return service.searchEmpId(code);
-    }*/
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/EmployeeIdGenerate")
