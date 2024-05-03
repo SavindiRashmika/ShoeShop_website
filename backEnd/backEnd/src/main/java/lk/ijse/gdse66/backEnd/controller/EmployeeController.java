@@ -43,20 +43,20 @@ public class EmployeeController {
         return new ResponseUtil("200", "Successfully Registered.!", null);
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping
-    public ResponseUtil updateEmployee(EmployeeDTO employeeDTO,Address address){
+    public ResponseUtil updateEmployee(@ModelAttribute EmployeeDTO employeeDTO,Address address){
         employeeDTO.setAddress(address);
         service.updateEmployee(employeeDTO);
         return new ResponseUtil("200", "Successfully Updated. :"+ employeeDTO.getCode(),null);
 
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @DeleteMapping
-    public ResponseUtil deleteEmployee(@RequestBody EmployeeDTO dto){
-        service.deleteEmployee(dto);
-        return new ResponseUtil("200", "Successfully Deleted. :"+ dto.getCode(),null);
+    public ResponseUtil deleteEmployee(@RequestParam String code){
+        service.deleteEmployee(code);
+        return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
     /*@ResponseStatus(HttpStatus.CREATED)

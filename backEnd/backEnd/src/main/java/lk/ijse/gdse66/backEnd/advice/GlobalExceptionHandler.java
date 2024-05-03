@@ -3,6 +3,7 @@ package lk.ijse.gdse66.backEnd.advice;
 
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,4 +19,5 @@ public class GlobalExceptionHandler {
     public ResponseUtil exceptionHandler(Exception e){
         return new ResponseUtil("500",e.getMessage(),null);
     }
+
 }

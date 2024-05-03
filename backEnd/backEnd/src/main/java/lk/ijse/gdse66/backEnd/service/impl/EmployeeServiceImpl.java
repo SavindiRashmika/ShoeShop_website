@@ -49,11 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(EmployeeDTO dto) {
-        if (!employeeRepo.existsById(dto.getCode())) {
+    public void deleteEmployee(String id) {
+        if (!employeeRepo.existsById(id)) {
             throw new RuntimeException("Wrong ID..Please enter valid id..!");
         }
-        employeeRepo.delete(mapper.map(dto,Employee.class));
+        employeeRepo.deleteById(id);
     }
 
     @Override

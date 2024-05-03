@@ -16,3 +16,8 @@ public class Address {
     String address2;
     String address3;
 }
+
+/*
+spring.mvc.cors.allowed-origins=*
+        spring.mvc.cors.allowed-methods=GET,POST,PUT,DELETE
+        spring.mvc.cors.allowed-headers=**/
