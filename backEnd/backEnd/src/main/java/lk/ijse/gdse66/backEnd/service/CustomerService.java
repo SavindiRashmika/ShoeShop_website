@@ -1,2 +1,21 @@
-package lk.ijse.gdse66.backEnd.service;public interface CustomerService {
+package lk.ijse.gdse66.backEnd.service;
+
+import lk.ijse.gdse66.backEnd.dto.CustomDTO;
+import lk.ijse.gdse66.backEnd.dto.CustomerDTO;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+
+public interface CustomerService {
+
+    void saveCustomer(CustomerDTO dto);
+    void updateCustomer(CustomerDTO dto);
+    void deleteCustomer(String id);
+    CustomerDTO searchCusId(String id);
+    ArrayList<CustomerDTO> loadAllCustomer();
+
+    @ResponseBody
+    CustomDTO customerIdGenerate();
+    CustomerDTO getSumCustomer();
+
 }
