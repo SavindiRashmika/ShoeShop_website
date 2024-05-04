@@ -88,15 +88,34 @@ function loadAllSup() {
             }
             generateSupplierID();
             blindClickEventsS();
+            setTextFieldValuesS("", "", "", "", "", "", "", "");
             console.log(res.message);
         }, error: function (error) {
             let message = JSON.parse(error.responseText).message;
             console.log(message);
+            Swal.fire({
+                icon: "error",
+                title: "Request failed",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
 
     });
 }
 
+function setTextFieldValuesS(supName, category, address1, address2, address3, contact1,contact2,supEmail) {
+    $("#supName").val(supName);
+    $("#category").val(category);
+    $("#address1").val(address1);
+    $("#address2").val(address2);
+    $("#address3").val(address3);
+    $("#contact1").val(contact1);
+    $("#contact2").val(contact2);
+    $("#email").val(supEmail);
+
+    $("#supName").focus();
+}
 
 $("#btnSaveS").click(function (){
 
@@ -114,7 +133,6 @@ $("#btnSaveS").click(function (){
             generateSupplierID();
 
             Swal.fire({
-                position: "top-end",
                 icon: "success",
                 title: "Your work has been saved",
                 showConfirmButton: false,
@@ -123,6 +141,12 @@ $("#btnSaveS").click(function (){
 
         }, error: function (error) {
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Request failed",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     });
 });

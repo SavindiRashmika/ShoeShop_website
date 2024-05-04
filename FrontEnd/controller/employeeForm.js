@@ -31,6 +31,12 @@ function generateEmployeeID() {
             console.log(ob);
             console.log(statusText);
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Request failed",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     });
 }
@@ -72,83 +78,21 @@ function loadAllEmp() {
             }
             generateEmployeeID();
             blindClickEventsE();
+            setTextFieldValues("", "", "", "", "", "", "", "", "", "", "","","","","");
             console.log(res.message);
         }, error: function (error) {
             let message = JSON.parse(error.responseText).message;
+            Swal.fire({
+                icon: "error",
+                title: "Request failed",
+                showConfirmButton: false,
+                timer: 1500
+            });
             console.log(message);
         }
 
     });
 }
-
-/*
-$("#btnSave").click(function () {
-    var image = $("#img");
-    var imageUrl = image.attr('src');
-    if (!imageUrl || imageUrl === '../img/other/img.png') {
-        alert("Error");
-        swal("Error", "Take Employee Photo.!", "error");
-    }
-
-    let empId = $("#empId").val();
-    let name = $("#empName").val();
-    let status = $("#status").val();
-    let designation = $("#designation").val();
-    let gender = $("#empGender").val();
-    let email = $("#email").val();
-    let role = $("#role").val();
-    let birth = $("#birth").val();
-    let joinDate = $("#startDate").val();
-    let branch = $("#branch").val();
-    let address1 = $("#address1").val();
-    let address2 = $("#address2").val();
-    let address3 = $("#address3").val();
-    let contact = $("#empContact").val();
-    let person = $("#person").val();
-    let eContact = $("#eContact").val();
-
-
-    $.ajax({
-        url: "http://localhost:8080/backEnd/api/v1/employee",
-        method: "POST",
-        data: JSON.stringify({
-            "code": empId,
-            "name": name,
-            "designation":designation,
-            "status": status,
-            "gender": gender,
-            "email":email,
-            "role": role,
-            "branch": branch,
-            "address1": address1,
-            address2:address2,
-            address3: address3,
-            contact: contact,
-            EmgContact: eContact,
-            person: person,
-            birth: birth,
-            joinDate: joinDate
-        }), // Convert data to JSON string
-        contentType: "application/json",
-        success: function (res) {
-            console.log(res);
-            if (res.status == 200) {
-                loadAllEmp();
-                generateEmployeeID();
-                alert("Succsesfully saved");
-            } else {
-                console.log(res)
-                alert(res);
-            }
-        },
-        error: function (ob, textStatus, error) {
-            console.log(ob);
-            console.log(textStatus);
-            console.log(error);
-        }
-    });
-});
-*/
 
 $("#btnSave").click(function (){
     var image = $("#img");
@@ -315,7 +259,7 @@ $("#btnDelete").click(function () {
     });
 });
 
-$("#search_Id").on("keypress", function (event) {
+/*$("#search_Id").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#search_Id").val();
         $("#tblEmployee").empty();
@@ -349,32 +293,65 @@ $("#search_Id").on("keypress", function (event) {
             error: function (error) {
                 loadAllEmp();
                 let message = JSON.parse(error.responseText).message;
+                Swal.fire({
+                    icon: "error",
+                    title: "Request failed",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 console.log(message);
             }
         })
     }
 
-});
+});*/
 
-$("#searchCusId").on("keypress", function (event) {
+function setTextFieldValues(empName, empGender, status, designation, email, role, branch, address1, address2, address3, empContact,person,birth,startDate,eContact) {
+    $("#empName").val(empName);
+    $("#empGender").val(empGender);
+    $("#status").val(status);
+    $("#designation").val(designation);
+    $("#email").val(email);
+    $("#role").val(role);
+    $("#branch").val(branch);
+    $("#address1").val(address1);
+    $("#address2").val(address2);
+    $("#address3").val(address3);
+    $("#empContact").val(empContact);
+    $("#person").val(person);
+    $("#birth").val(birth);
+    $("#startDate").val(startDate);
+    $("#eContact").val(eContact);
+
+    $("#empName").focus();
+
+}
+
+
+$("#search_Id").on("keypress", function (event) {
     if (event.which === 13) {
-        var search = $("#searchCusId").val();
-        $("#customerTable").empty();
+        var search = $("#search_Id").val();
+        $("#tblEmployee").empty();
         $.ajax({
-            url: baseUrl + "customer/searchCusId/?id="+ search,
+            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?empId="+ search,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
                 console.log(res);
-                let row = "<tr><td>" + res.id + "</td><td>" + res.name + "</td><td>" + res.address + "</td><td>" + res.salary + "</td></tr>";
-                $("#").append(row);
+                let row = "<tr><td>" + res.code + "</td><td>" + res.name + "</td><td>" + res.gender + "</td><td>" + res.status + "</td><td>" + res.designation + "</td><td>" + res.role + "</td><td>" + res.joinDate + "</td><td>" + res.dob + "</td><td>" + res.branch + "</td><td>" + addressColumn + "</td><td>" + res.contact + "</td><td>" + res.person + "</td><td>" + res.eContact + "</td><td>" + res.email + "</td></tr>";
+                $("#tblEmployee").append(row);
                 blindClickEventsE();
             },
             error: function (error) {
-                loadAllCustomer();
+                loadAllEmp();
                 let message = JSON.parse(error.responseText).message;
-                emptyMassage(message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Request failed",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }
         })
     }

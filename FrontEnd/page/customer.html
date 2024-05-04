@@ -71,11 +71,11 @@
             <h1>Customer Form </h1>
             <div class="cusF">
                 <div class="box-info">
-                    <form >
+                    <form id="cusForm">
                         <div class="row g-5 mb-4">
                             <div class="col">
                                 <label for="cusId" class="form-label"> Customer code</label>
-                                <input id="cusId" name="id" type="text" class="form-control">
+                                <input id="cusId" name="code" type="text" class="form-control">
                             </div>
                             <div class="col">
                                 <label for="cusName" class="form-label">Customer name</label>
@@ -87,9 +87,9 @@
                             <div class="col">
                                 <label for="cusGender" class="form-label">Gender</label>
                                 <select id="cusGender" name="gender" class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
+                                    <option ></option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
                                 </select>
                             </div>
                             <div class="col">
@@ -102,15 +102,15 @@
                             <div class="col">
                                 <label for="cusLevel" class="form-label">Level</label>
                                 <select id="cusLevel" name="level" class="form-select" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Gold</option>
-                                    <option value="2">Silver</option>
-                                    <option value="3">Bronze</option>
-                                    <option value="4">New</option>
+                                    <option ></option>
+                                    <option value="GOLD">Gold</option>
+                                    <option value="SILVER">Silver</option>
+                                    <option value="BRONZE">Bronze</option>
+                                    <option value="NEW">New</option>
                                 </select></div>
                             <div class="col">
-                                <label for="points" class="form-label">Total points</label>
-                                <input id="points" name="points" type="text" class="form-control">
+                                <label for="loyaltyPoints" class="form-label">Total points</label>
+                                <input id="loyaltyPoints" name="loyaltyPoints" type="text" class="form-control">
                             </div>
                         </div>
 
@@ -126,36 +126,36 @@
                             </div>
                             <div class="col mb-2">
                                 <label for="address3" class="form-label">City</label>
-                                <input id="address3" name="address1" type="text" class="form-control">
+                                <input id="address3" name="address3" type="text" class="form-control">
                             </div>
                         </div>
 
                         <div class="row g-5 mb-5">
                             <div class="col">
-                                <label for="birth" class="form-label">Date Of Birth</label>
-                                <input type="date" id="birth" name="birth" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                                <label for="dob" class="form-label">Date Of Birth</label>
+                                <input type="date" id="dob" name="dob" value="2018-07-22" />
                             </div>
                             <div class="col">
-                                <label for="startDate" class="mb-2 w-50">Join date:</label><br>
-                                <input type="date" id="startDate" name="startDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                                <label for="loyaltyDate" class="mb-2 w-50">Join date:</label><br>
+                                <input type="date" id="loyaltyDate" name="loyaltyDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
                             </div>
                             <div class="col">
-                                <label for="time" class="mb-1">Recent purchased</label>
-                                <input type="datetime-local" id="time" name="time" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00" />
+                                <label for="recentPurchaseDate" class="mb-1">Recent purchased</label>
+                                <input type="text" id="recentPurchaseDate" name="recentPurchaseDate" class="form-control">
                             </div>
                         </div>
 
                         <div class="row g-5 mb-5">
                             <div class="col">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" name="birth" pattern=".+@example\.com" size="30" required>
+                                <input type="text" id="email" name="email" class="form-control">
                             </div>
                         </div>
 
                         <div class="button">
-                            <button class="animated-button save"><span> Save</span><span class="saveS"></span></button>
-                            <button class="animated-button update"><span>Update</span><span class="updateS"></span></button>
-                            <button class="animated-button delete"><span>Delete</span><span class="deleteS"></span></button>
+                            <button id="btnSaveC" type="button" class="animated-button save"><span> Save</span><span class="saveS"></span></button>
+                            <button id="btnUpdateC" type="button" class="animated-button update"><span>Update</span><span class="updateS"></span></button>
+                            <button id="btnDeleteC" type="button" class="animated-button delete"><span>Delete</span><span class="deleteS"></span></button>
                         </div>
                     </form>
                 </div>
@@ -171,12 +171,12 @@
                                 <th>Customer Name</th>
                                 <th>Customer Address</th>
                                 <th>Customer Gender</th>
-                                <th>Join Date</th>
+                                <th>Purchase Date</th>
                                 <th>Customer Level</th>
                                 <th>Total Point</th>
                                 <th>DOB</th>
+                                <th>Join_Date</th>
                                 <th>Contact No</th>
-                                <th>Purchase Date</th>
                                 <th>Email</th>
 
                             </tr>
@@ -199,10 +199,11 @@
 
 </main>
 
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/customerForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
