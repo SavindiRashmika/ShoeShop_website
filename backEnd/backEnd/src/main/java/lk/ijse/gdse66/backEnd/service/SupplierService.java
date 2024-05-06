@@ -2,6 +2,7 @@ package lk.ijse.gdse66.backEnd.service;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
+import lk.ijse.gdse66.backEnd.entity.Supplier;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -17,4 +18,5 @@ public interface SupplierService {
     @ResponseBody
     CustomDTO supplierIdGenerate();
     SupplierDTO getSumSupplier();
+
 }

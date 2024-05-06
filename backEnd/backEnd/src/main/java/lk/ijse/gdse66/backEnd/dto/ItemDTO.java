@@ -1,28 +1,24 @@
-package lk.ijse.gdse66.backEnd.entity;
+package lk.ijse.gdse66.backEnd.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.*;
+import lk.ijse.gdse66.backEnd.entity.Supplier;
+import lk.ijse.gdse66.backEnd.enums.Category;
 import lk.ijse.gdse66.backEnd.enums.ShoeType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Item {
-    @Id
+@ToString
+public class ItemDTO {
     private String code;
     private String name;
     private Integer qty;
-    @Column(columnDefinition = "LONGTEXT")
     private String itemPicture;
-    @Enumerated(EnumType.STRING)
     private ShoeType shoeType;
     private Integer size;
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "supplier_id", referencedColumnName = "code", nullable = false)
     private Supplier supplier;
     private String supName;
     private Double salePrice;
@@ -30,5 +26,4 @@ public class Item {
     private Double expectedProfit;
     private Double profitMargin;
     private String status;
-
 }
