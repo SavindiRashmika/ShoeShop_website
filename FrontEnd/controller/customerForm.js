@@ -140,7 +140,7 @@ function blindClickEventsC() {
         let cusLevel = $(this).children().eq(5).text();
         let loyaltyPoints = $(this).children().eq(6).text();
         let addressColumn = $(this).children().eq(2).text();
-        let addressComponents = addressColumn.split(','); // Split by comma
+        let addressComponents = addressColumn.split(',');
         let address1 = addressComponents[0] || '';
         let address2 = addressComponents[1] || '';
         let address3 = addressComponents[2] || '';

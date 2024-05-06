@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../style/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
+
 </head>
 <body>
 <main>
@@ -72,11 +73,11 @@
       <h1>Item Form </h1>
       <div class="cusF">
         <div class="box-info">
-          <form >
+          <form id="itemForm">
             <div class="row g-5 mb-4">
               <div class="col">
                 <label for="itemId" class="form-label"> Item code</label>
-                <input id="itemId" name="id" type="text" class="form-control">
+                <input id="itemId" name="code" type="text" class="form-control">
               </div>
               <div class="col">
                 <label for="itemName" class="form-label">Item name</label>
@@ -87,31 +88,35 @@
             <div class="row g-5 mb-4">
               <div class="col">
                 <label for="category" class="form-label">Category</label>
-                <select id="category" name="category" class="form-select" aria-label="Default select example">
+                <select id="category" name="shoeType" class="form-select" aria-label="Default select example">
                   <option selected></option>
-                  <option value="1">Men</option>
-                  <option value="2">Women</option>
+                  <option value="MEN">Men</option>
+                  <option value="WOMEN">Women</option>
                 </select>
               </div>
               <div class="col">
                 <label for="size" class="form-label">Size</label>
                 <select id="size" name="size" class="form-select" aria-label="Default select example">
                   <option selected></option>
-                  <option value="1">Size 5</option>
-                  <option value="2">Size 6</option>
-                  <option value="3">Size 7</option>
-                  <option value="4">Size 8</option>
-                  <option value="5">Size 9</option>
-                  <option value="6">Size 10</option>
+                  <option value="5">Size 5</option>
+                  <option value="6">Size 6</option>
+                  <option value="7">Size 7</option>
+                  <option value="8">Size 8</option>
+                  <option value="9">Size 9</option>
+                  <option value="10">Size 10</option>
                 </select>
+              </div>
+              <div class="col mb-2">
+                <label for="qty" class="form-label">Qty</label>
+                <input id="qty" name="qty" type="text" class="form-control">
               </div>
             </div>
 
             <div class="row mb-4">
               <div class="col">
-                <label for="supCode" class="form-label">Supplier Code</label>
-                <select id="supCode" name="supCode" class="form-select" aria-label="Default select example">
-                  <option selected></option>
+                <label for="supplier_id" class="form-label">Supplier Code</label>
+                <select id="supplier_id" name="supplier" class="form-select" aria-label="Default select example" >
+                  <option  value="SUPPLIER_ID"></option>
                 </select>
               </div>
               <div class="col mb-2">
@@ -122,16 +127,16 @@
 
             <div class="row  mb-3 border border-dark-subtle">
               <div class="col mt-3 ">
-                <label for="priceS" class="form-label">Unit Price-Sale</label>
-                <input id="priceS" name="priceS" type="text" class="form-control">
+                <label for="salePrice" class="form-label">Unit Price-Sale</label>
+                <input id="salePrice" name="salePrice" type="text" class="form-control">
               </div>
               <div class="col mb-5 mt-3">
-                <label for="priceB" class="form-label">unit Price-Buy</label>
-                <input id="priceB" name="priceB" type="text" class="form-control">
+                <label for="buyPrice" class="form-label">unit Price-Buy</label>
+                <input id="buyPrice" name="buyPrice" type="text" class="form-control">
               </div>
               <div class="col mb-2 mt-3">
-                <label for="profit" class="form-label">Expected Profit</label>
-                <input id="profit" name="profit" type="text" class="form-control">
+                <label for="expectedProfit" class="form-label">Expected Profit</label>
+                <input id="expectedProfit" name="expectedProfit" type="text" class="form-control">
               </div>
             </div>
 
@@ -142,19 +147,24 @@
               </div>
               <div class="col">
                 <label for="status" class="form-label">Status</label>
-                <input type="text" id="status" name="birth" class="form-control">
+                <input type="text" id="status" name="status" class="form-control">
               </div>
             </div>
 
             <div class="input-group mb-3">
-              <input type="file" class="form-control" id="itemPic">
-              <label class="input-group-text bg-danger text-white" for="itemPic">Upload</label>
+              <div class="col me-3">
+                <input type="file" class="form-control" id="itemPicture">
+                <label class="input-group-text bg-danger w-25  text-white" for="itemPicture">Upload</label>
+              </div>
+              <div class="col">
+                <img name="itemPicture" id="imgItem" src="../img/other/img.png" height="150" width="250"/></div>
+                <input type="file" id="imgInput" accept="image/*" style="display:none">
             </div>
 
             <div class="button">
-              <button class="animated-button save"><span> Save</span><span class="saveS"></span></button>
-              <button class="animated-button update"><span>Update</span><span class="updateS"></span></button>
-              <button class="animated-button delete"><span>Delete</span><span class="deleteS"></span></button>
+              <button id="btnSaveI" type="button" class="animated-button save"><span> Save</span><span class="saveS"></span></button>
+              <button id="btnUpdateI" type="button" class="animated-button update"><span>Update</span><span class="updateS"></span></button>
+              <button id="btnDeleteI" type="button" class="animated-button delete"><span>Delete</span><span class="deleteS"></span></button>
             </div>
 
           </form>
@@ -167,22 +177,22 @@
             <table class="table table-bordered table-hover ">
               <thead class="table-success ">
               <tr>
-                <th>Item code</th>
-                <th>Item Name</th>
-                <th>Item Picture</th>
+                <th>Item_code</th>
+                <th>Item_Name</th>
                 <th>Category</th>
                 <th>Size</th>
-                <th>Supplier Code</th>
-                <th>Supplier Name</th>
-                <th>Unit price-Sale</th>
-                <th>Unit price-Buy</th>
-                <th>Expected Profit</th>
-                <th>Profit margin</th>
+                 <th>Item_qty</th>
+                <th>Supplier_Code</th>
+                <th>Supplier_Name</th>
+                <th>Sale_price</th>
+                <th>Buy_price</th>
+                <th>Expected_Profit</th>
+                <th>Profit_margin</th>
                 <th>Status</th>
               </tr>
               </thead>
 
-              <tbody id="tblEmployee">
+              <tbody id="tblItem">
 
               </tbody>
             </table>
@@ -199,10 +209,11 @@
 
 </main>
 
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/itemForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
