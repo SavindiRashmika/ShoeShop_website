@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
+
 </head>
 <body>
 <main>
@@ -72,6 +73,17 @@
             <div class="cusF">
                 <div class="table-data">
                     <div class="box-info-tbl">
+
+                        <div class="input-group">
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="search" id="form1" class="form-control" style="width: 300px" placeholder="Search" />
+                                <label class="form-label" for="form1"></label>
+                            </div>
+                            <button type="button" class="btn btn-primary" style="height:20px; position: relative; height: 38px; right: 40px;" data-mdb-ripple-init>
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+
                         <table class="table table-bordered table-hover ">
                             <thead class="table-success bg-success">
                             <tr>
@@ -102,10 +114,11 @@
 
 </main>
 
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/viewSupplier.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

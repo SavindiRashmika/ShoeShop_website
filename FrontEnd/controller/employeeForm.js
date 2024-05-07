@@ -102,8 +102,8 @@ $("#btnSave").click(function (){
        // swal("Error", "Take Employee Photo.!", "error");
     }
     let formData = $("#empForm").serialize();
-    let empId = $("#empId").val();
-    formData += "&code=" + empId;
+   /* let empId = $("#empId").val();
+    formData += "&code=" + empId;*/
     console.log(formData);
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
@@ -128,8 +128,8 @@ $("#btnSave").click(function (){
     });
 });
 
-$('#inputGroupFile02').change(function() {
-    var fileInput = $('#inputGroupFile02')[0];
+$('#picture').change(function() {
+    var fileInput = $('#picture')[0];
     var file = fileInput.files[0];
 
     if (file && (file.type.includes('image') || file.type === 'image/gif')) {
@@ -230,7 +230,7 @@ $("#btnUpdate").click(function () {
 $("#btnDelete").click(function () {
     let id = $("#empId").val();
     $.ajax({
-        url: "http://localhost:8080/backEnd/api/v1/employee?code=" + id + "",
+        url: "http://localhost:8080/backEnd/api/v1/employee/?code=" + id + "",
         method: "DELETE",
         dataType: "json",
         success: function (resp) {
@@ -258,53 +258,6 @@ $("#btnDelete").click(function () {
     });
 });
 
-/*$("#search_Id").on("keypress", function (event) {
-    if (event.which === 13) {
-        var search = $("#search_Id").val();
-        $("#tblEmployee").empty();
-        $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?empId=" + search,
-            method: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (res) {
-                console.log(res);
-                $("#empId").val(res.code);
-                $("#empName").val(res.name);
-                $("#empGender").val(res.gender);
-                $("#status").val(res.status);
-                $("#designation").val(res.designation);
-                $("#email").val(res.email);
-                $("#role").val(res.role);
-                $("#branch").val(res.branch);
-                $("#address1").val(res.address1);
-                $("#address2").val(res.address2);
-                $("#address3").val(res.address3);
-                $("#empContact").val(res.contact);
-                $("#person").val(res.person);
-                $("#birth").val(res.birth);
-                $("#startDate").val(res.joinDate);
-                $("#eContact").val(res.emgContact);
-
-                let row = "<tr><td>" + res.code + "</td><td>" + res.name + "</td><td>" + res.gender + "</td><td>" + res.status + "</td><td>" + res.designation + "</td><td>" + res.role + "</td><td>" + res.joinDate + "</td><td>" + res.dob + "</td><td>" + res.branch + "</td><td>" + addressColumn + "</td><td>" + res.contact + "</td><td>" + res.person + "</td><td>" + res.eContact + "</td><td>" + res.email + "</td></tr>";
-                $("#tblEmployee").append(row);
-            },
-            error: function (error) {
-                loadAllEmp();
-                let message = JSON.parse(error.responseText).message;
-                Swal.fire({
-                    icon: "error",
-                    title: "Request failed",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                console.log(message);
-            }
-        })
-    }
-
-});*/
-
 function setTextFieldValues(empName, empGender, status, designation, email, role, branch, address1, address2, address3, empContact,person,birth,startDate,eContact) {
     $("#empName").val(empName);
     $("#empGender").val(empGender);
@@ -326,21 +279,43 @@ function setTextFieldValues(empName, empGender, status, designation, email, role
 
 }
 
-
-$("#search_Id").on("keypress", function (event) {
+$("#form1").on("keypress", function (event) {
     if (event.which === 13) {
-        var search = $("#search_Id").val();
+        var search = $("#form1").val();
         $("#tblEmployee").empty();
         $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?empId="+ search,
+            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?code="+ search,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
                 console.log(res);
-                let row = "<tr><td>" + res.code + "</td><td>" + res.name + "</td><td>" + res.gender + "</td><td>" + res.status + "</td><td>" + res.designation + "</td><td>" + res.role + "</td><td>" + res.joinDate + "</td><td>" + res.dob + "</td><td>" + res.branch + "</td><td>" + addressColumn + "</td><td>" + res.contact + "</td><td>" + res.person + "</td><td>" + res.eContact + "</td><td>" + res.email + "</td></tr>";
-                $("#tblEmployee").append(row);
-                blindClickEventsE();
+                if (res) {
+                    let empId = res.code;
+                    let name = res.name;
+                    let gender = res.gender
+                    let status = res.status
+                    let designation = res.designation;
+                    let role = res.role;
+                    let joinDate = res.joinDate;
+                    let dob = res.birth;
+                    let branch = res.branch;
+                    let address = res.address || '';
+                    let contact = res.contact;
+                    let person = res.person;
+                    let eContact = res.emgContact;
+                    let email = res.email;
+
+                    let ad1 = address.address1 || '';
+                    let ad2 = address.address2 || '';
+                    let ad3 = address.address3 || '';
+
+                    let addressColumn = `${ad1}, ${ad2}, ${ad3}`;
+
+                    let row = "<tr><td>" + empId + "</td><td>" + name + "</td><td>" + gender + "</td><td>" + status + "</td><td>" + designation + "</td><td>" + role + "</td><td>" + joinDate + "</td><td>" + dob + "</td><td>" + branch + "</td><td>" + addressColumn + "</td><td>" + contact + "</td><td>" + person + "</td><td>" + eContact + "</td><td>" + email + "</td></tr>";
+                    $("#tblEmployee").append(row);
+                    blindClickEventsS();
+                }
             },
             error: function (error) {
                 loadAllEmp();

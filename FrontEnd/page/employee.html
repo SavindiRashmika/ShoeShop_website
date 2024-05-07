@@ -77,7 +77,7 @@
             <div class="row g-5 mb-4">
               <div class="col">
                 <label for="empId" class="form-label"> Employee code</label>
-                <input id="empId" name="code" type="text" class="form-control" disabled>
+                <input id="empId" name="code" type="text" class="form-control">
               </div>
               <div class="col">
                 <label for="empName" class="form-label">Employee name</label>
@@ -166,22 +166,23 @@
             <div class="row g-5 mb-5">
               <div class="col">
                 <label for="birth" class="form-label">Date Of Birth</label>
-                <input type="date" id="birth" name="birth" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                <input type="date" id="birth" name="birth" value="2018-07-22" />
               </div>
               <div class="col">
                 <label for="startDate" class="mb-2 w-50">Join date:</label>
-                <input type="date" id="startDate" name="joinDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                <input type="date" id="startDate" name="joinDate" value="2018-07-22" />
               </div>
             </div>
 
             <div class="input-group mb-3">
               <div class="col me-3">
-                <input type="file" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text bg-danger w-25  text-white" for="inputGroupFile02">Upload</label>
+                <input type="file" class="form-control" id="picture">
+                <label class="input-group-text bg-danger w-25  text-white" for="picture">Upload</label>
               </div>
               <div class="col">
-                <img id="img" src="../img/other/img.png" height="150" width="250"/></div>
+                <img name="pic" id="img" src="../img/other/img.png" height="150" width="250"/>
                 <input type="file" id="imgInput" accept="image/*" style="display:none">
+              </div>
             </div>
 
             <div class="button">
@@ -198,9 +199,14 @@
         <div class="table-data">
           <div class="box-info-tbl">
 
-            <div class="form-input">
-              <input type="search" id="searchEmpId" name="empId" placeholder="Search...">
-              <button type="button" class="search-btn"><i class='bx bx-search' ></i></button>
+            <div class="input-group">
+              <div class="form-outline" data-mdb-input-init>
+                <input type="search" id="form1" class="form-control" style="width: 300px" placeholder="Search" />
+                <label class="form-label" for="form1"></label>
+              </div>
+              <button type="button" class="btn btn-primary" style="height:20px; position: relative; height: 38px; right: 40px;" data-mdb-ripple-init>
+                <i class="fas fa-search"></i>
+              </button>
             </div>
 
             <table class="table table-bordered table-hover w-auto ">

@@ -65,7 +65,7 @@ function loadAllCus() {
             console.log(res);
 
             for (let i of res.data) {
-                let supId = i.code;
+                let cusId = i.code;
                 let name = i.name;
                 let gender = i.gender
                 let contact = i.loyaltyDate
@@ -83,7 +83,7 @@ function loadAllCus() {
 
                 let addressColumn = ad1 + ", " + ad2 + ", " + ad3;
 
-                let row = "<tr><td>" + supId + "</td><td>" + name + "</td><td>" + addressColumn + "</td><td>" + gender + "</td><td>" + joinDate + "</td><td>" + level + "</td><td>" + points + "</td><td>" + dob + "</td><td>" + contact + "</td><td>" + time + "</td><td>" + email + "</td></tr>";
+                let row = "<tr><td>" + cusId + "</td><td>" + name + "</td><td>" + addressColumn + "</td><td>" + gender + "</td><td>" + joinDate + "</td><td>" + level + "</td><td>" + points + "</td><td>" + dob + "</td><td>" + contact + "</td><td>" + time + "</td><td>" + email + "</td></tr>";
                 $("#tblCustomer").append(row);
 
             }
@@ -99,7 +99,6 @@ function loadAllCus() {
 
     });
 }
-
 
 $("#btnSaveC").click(function (){
     $('#recentPurchaseDate').val(`${formattedDate} ${formattedTime}`);
@@ -127,8 +126,6 @@ $("#btnSaveC").click(function (){
         }
     });
 });
-
-
 
 function blindClickEventsC() {
     $("#tblCustomer>tr").on("click", function () {
@@ -245,4 +242,49 @@ $("#btnDeleteC").click(function () {
             });
         }
     });
+});
+
+$("#form1").on("keypress", function (event) {
+    if (event.which === 13) {
+        var search = $("#form1").val();
+        $("#tblCustomer").empty();
+
+        $.ajax({
+            url: "http://localhost:8080/backEnd/api/v1/customer/searchCustomer?code=" + search,
+            method: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                if (res) {
+                    let cusId = res.code;
+                    let name = res.name;
+                    let gender = res.gender
+                    let contact = res.loyaltyDate
+                    let level = res.level;
+                    let points = res.loyaltyPoints;
+                    let dob = res.dob;
+                    let address = res.address || '';
+                    let time = res.contact;
+                    let email = res.email
+                    let joinDate =res.recentPurchaseDate;
+
+                    let ad1 = address.address1 || '';
+                    let ad2 = address.address2 || '';
+                    let ad3 = address.address3 || '';
+
+                    let addressColumn = `${ad1}, ${ad2}, ${ad3}`;
+
+                    let row = "<tr><td>" + cusId + "</td><td>" + name + "</td><td>" + addressColumn + "</td><td>" + gender + "</td><td>" + joinDate + "</td><td>" + level + "</td><td>" + points + "</td><td>" + dob + "</td><td>" + contact + "</td><td>" + time + "</td><td>" + email + "</td></tr>";
+                    $("#tblCustomer").append(row);
+                    blindClickEventsC();
+                }
+            },
+            error: function (error) {
+                loadAllCus();
+                let message = JSON.parse(error.responseText).message;
+                console.error("Error:", message);
+            }
+        });
+    }
 });

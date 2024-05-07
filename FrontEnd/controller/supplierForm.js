@@ -244,9 +244,9 @@ $("#btnDeleteS").click(function () {
     });
 });
 
-$("#supSearch").on("keypress", function (event) {
+$("#form1").on("keypress", function (event) {
     if (event.which === 13) { // Check if Enter key is pressed
-        var search = $("#supSearch").val(); // Get the value from the input field
+        var search = $("#form1").val(); // Get the value from the input field
         $("#tblSupplier").empty(); // Clear previous search results
 
         $.ajax({
@@ -256,34 +256,33 @@ $("#supSearch").on("keypress", function (event) {
             dataType: "json",
             success: function (res) {
                 console.log(res);
-                // Loop through each item in the response data
-                for (let i of res.data) {
-                    let supId = i.code;
-                    let supName = i.name;
-                    let category = i.category;
-                    let address = i.address;
-                    let contact1 = i.contact1;
-                    let contact2 = i.contact2;
-                    let email = i.email;
+                if (res) {
+                    let code = res.code;
+                    let name = res.name;
+                    let category = res.category;
+                    let address = res.address || '';
+                    let contact1 = res.contact1;
+                    let contact2 = res.contact2;
+                    let email = res.email;
 
-                    // Concatenate address fields
-                    let addressColumn = `${address.address1}, ${address.address2}, ${address.address3}`;
+                    let ad1 = address.address1 || '';
+                    let ad2 = address.address2 || '';
+                    let ad3 = address.address3 || '';
 
-                    // Construct table row HTML
-                    let row = `<tr><td>${supId}</td><td>${supName}</td><td>${addressColumn}</td><td>${category}</td><td>${contact1}</td><td>${contact2}</td><td>${email}</td></tr>`;
-                    $("#tblSupplier").append(row); // Append row to table
+                    let addressColumn = `${ad1}, ${ad2}, ${ad3}`;
 
-                    // Attach click event listeners
-                    bindClickEventsS();
+                    let row = "<tr><td>" + code + "</td><td>" + name + "</td><td>" + category + "</td><td>" + addressColumn + "</td><td>" + contact1 + "</td><td>" + contact2 + "</td><td>" + email + "</td></tr>";
+                    $("#tblSupplier").append(row);
+                    blindClickEventsS();
                 }
             },
             error: function (error) {
-                loadAllSup(); // Reload all suppliers
+                loadAllSup();
                 let message = JSON.parse(error.responseText).message;
-                // Display error message
                 console.error("Error:", message);
-                // You can show the error message to the user if needed
             }
         });
     }
 });
+
+
