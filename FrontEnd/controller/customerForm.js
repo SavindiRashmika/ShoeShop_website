@@ -250,8 +250,12 @@ $("#form1").on("keypress", function (event) {
         $("#tblCustomer").empty();
 
         $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/customer/searchCustomer?code=" + search,
+            url: "http://localhost:8080/backEnd/api/v1/customer/searchCustomer",
             method: "GET",
+            data: {
+                code: search,
+                name: search
+            },
             contentType: "application/json",
             dataType: "json",
             success: function (res) {

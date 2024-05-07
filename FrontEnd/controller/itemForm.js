@@ -89,7 +89,7 @@ function loadAllSuppliers() {
 $("#supplier_id").click(function () {
     var search = $("#supplier_id").val();
     $.ajax({
-        url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier?code=" + search,
+        url: "http://localhost:8080/backEnd/api/v1/supplier/searchSup?code=" + search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
@@ -292,8 +292,12 @@ $("#form1").on("keypress", function (event) {
         $("#tblItem").empty();
 
         $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/item/searchItem?code=" + search,
+            url: "http://localhost:8080/backEnd/api/v1/item/searchItem",
             method: "GET",
+            data: {
+                code: search,
+                name: search
+            },
             contentType: "application/json",
             dataType: "json",
             success: function (res) {

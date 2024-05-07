@@ -101,8 +101,12 @@ $("#form1").on("keypress", function (event) {
         var search = $("#form1").val();
         $("#tblEmployee").empty();
         $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee?code="+ search,
+            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee",
             method: "GET",
+            data: {
+                code: search,
+                name: search
+            },
             contentType: "application/json",
             dataType: "json",
             success: function (res) {

@@ -250,8 +250,12 @@ $("#form1").on("keypress", function (event) {
         $("#tblSupplier").empty(); // Clear previous search results
 
         $.ajax({
-            url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier?code=" + search,
+            url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier",
             method: "GET",
+            data: {
+                code: search,
+                name: search
+            },
             contentType: "application/json",
             dataType: "json",
             success: function (res) {

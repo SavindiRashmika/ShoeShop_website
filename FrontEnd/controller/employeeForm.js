@@ -288,8 +288,8 @@ $("#form1").on("keypress", function (event) {
             url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee",
             method: "GET",
             data: {
-                code: search, // Provide the 'code' parameter
-                name: search  // Provide the 'name' parameter
+                code: search,
+                name: search
             },
             contentType: "application/json",
             dataType: "json",
