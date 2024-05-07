@@ -4,6 +4,7 @@
 
 loadAllItem();
 loadAllSuppliers();
+profitMargin();
 
 function loadAllItem() {
     $("#tblItem").empty();
@@ -229,6 +230,31 @@ $("#btnDeleteI").click(function () {
         }
     });
 });
+
+
+function profitMargin() {
+    let salePrice = parseFloat($("#salePrice").val());
+    let buyPrice = parseFloat($("#buyPrice").val());
+
+    if (!isNaN(salePrice) && !isNaN(buyPrice)) {
+        let profit = salePrice - buyPrice;
+        let profitMargin = Math.round((profit / salePrice) * 100);
+        profitMargin = profitMargin.toFixed(1);
+        $("#expectedProfit").val(profit);
+        $("#profitMargin").val(profitMargin);
+    } else {
+        $("#expectedProfit").val('');
+        $("#profitMargin").val('');
+    }
+}
+
+
+$("#buyPrice").on("input", function() {
+    profitMargin();
+});
+
+
+
 
 function blindClickEventsI() {
     $("#tblItem>tr").on("click", function () {

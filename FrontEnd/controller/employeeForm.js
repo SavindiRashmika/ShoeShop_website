@@ -279,7 +279,67 @@ function setTextFieldValues(empName, empGender, status, designation, email, role
 
 }
 
+
 $("#form1").on("keypress", function (event) {
+    if (event.which === 13) {
+        var search = $("#form1").val();
+        $("#tblEmployee").empty();
+        $.ajax({
+            url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee",
+            method: "GET",
+            data: {
+                code: search, // Provide the 'code' parameter
+                name: search  // Provide the 'name' parameter
+            },
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                if (res) {
+                    let empId = res.code;
+                    let name = res.name;
+                    let gender = res.gender;
+                    let status = res.status;
+                    let designation = res.designation;
+                    let role = res.role;
+                    let joinDate = res.joinDate;
+                    let dob = res.birth;
+                    let branch = res.branch;
+                    let address = res.address || '';
+                    let contact = res.contact;
+                    let person = res.person;
+                    let eContact = res.emgContact;
+                    let email = res.email;
+
+                    let ad1 = address.address1 || '';
+                    let ad2 = address.address2 || '';
+                    let ad3 = address.address3 || '';
+
+                    let addressColumn = `${ad1}, ${ad2}, ${ad3}`;
+
+                    let row = "<tr><td>" + empId + "</td><td>" + name + "</td><td>" + gender + "</td><td>" + status + "</td><td>" + designation + "</td><td>" + role + "</td><td>" + joinDate + "</td><td>" + dob + "</td><td>" + branch + "</td><td>" + addressColumn + "</td><td>" + contact + "</td><td>" + person + "</td><td>" + eContact + "</td><td>" + email + "</td></tr>";
+                    $("#tblEmployee").append(row);
+                    blindClickEventsS();
+                }
+            },
+            error: function (error) {
+                loadAllEmp();
+                let message = JSON.parse(error.responseText).message;
+                Swal.fire({
+                    icon: "error",
+                    title: "Request failed",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        });
+    }
+});
+
+
+
+
+/*$("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblEmployee").empty();
@@ -330,7 +390,7 @@ $("#form1").on("keypress", function (event) {
         })
     }
 
-});
+});*/
 
 
 
