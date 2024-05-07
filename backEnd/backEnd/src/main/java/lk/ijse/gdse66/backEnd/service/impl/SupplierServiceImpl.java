@@ -1,7 +1,9 @@
 package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
+import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
+import lk.ijse.gdse66.backEnd.entity.Item;
 import lk.ijse.gdse66.backEnd.entity.Supplier;
 import lk.ijse.gdse66.backEnd.repo.SupplierRepo;
 import lk.ijse.gdse66.backEnd.service.SupplierService;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -50,12 +53,21 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierDTO searchSupId(String id) {
-        if (!supplierRepo.existsById(id)) {
-            throw new RuntimeException("Wrong ID. Please enter Valid id..!");
+    public SupplierDTO searchSupId(String code) {
+        Optional<Supplier> supplier = supplierRepo.findById(code);
+        if (supplier == null) {
+            throw new RuntimeException("supplier not found with code: " + code);
         }
-        return mapper.map(supplierRepo.findById(id).get(), SupplierDTO.class);
+        return mapper.map(supplier, SupplierDTO.class);
+    }
 
+    @Override
+    public SupplierDTO searchSupId(String code,String name) {
+        Supplier supplier = supplierRepo.findSupplierByCodeOrName(code, name);
+        if (supplier == null) {
+            throw new RuntimeException("supplier not found with code: " + code + " or name: " + name);
+        }
+        return mapper.map(supplier, SupplierDTO.class);
     }
 
     @Override

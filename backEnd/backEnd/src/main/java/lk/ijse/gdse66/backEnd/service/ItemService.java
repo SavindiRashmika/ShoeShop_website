@@ -9,6 +9,6 @@ public interface ItemService {
     void saveItem(ItemDTO dto);
     void updateItem(ItemDTO dto);
     void deleteItem(String id);
-    ItemDTO searchItemId(String code);
+    ItemDTO searchItemId(String code, String name);
     ArrayList<ItemDTO> loadAllItem();
 }

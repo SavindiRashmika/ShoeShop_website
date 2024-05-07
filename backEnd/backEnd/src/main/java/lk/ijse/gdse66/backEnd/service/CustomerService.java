@@ -11,7 +11,7 @@ public interface CustomerService {
     void saveCustomer(CustomerDTO dto);
     void updateCustomer(CustomerDTO dto);
     void deleteCustomer(String id);
-    CustomerDTO searchCusId(String id);
+    CustomerDTO searchCusId(String code, String name);
     ArrayList<CustomerDTO> loadAllCustomer();
 
     @ResponseBody

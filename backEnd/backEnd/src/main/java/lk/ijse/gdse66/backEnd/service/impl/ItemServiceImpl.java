@@ -2,6 +2,8 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
+import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
+import lk.ijse.gdse66.backEnd.entity.Employee;
 import lk.ijse.gdse66.backEnd.entity.Item;
 import lk.ijse.gdse66.backEnd.repo.ItemRepo;
 import lk.ijse.gdse66.backEnd.service.ItemService;
@@ -33,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void updateItem(ItemDTO dto) {
-        if (itemRepo.existsById(dto.getCode())) {
+        if (!itemRepo.existsById(dto.getCode())) {
             throw new RuntimeException("update failed! employeeId : " + dto.getCode());
         }
         itemRepo.save(mapper.map(dto, Item.class));
@@ -41,18 +43,18 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void deleteItem(String id) {
-        if (itemRepo.existsById(id)) {
+        if (!itemRepo.existsById(id)) {
             throw new RuntimeException("Wrong ID..Please enter valid id..!");
         }
         itemRepo.deleteById(id);
     }
 
     @Override
-    public ItemDTO searchItemId(String code) {
-        if (!itemRepo.existsById(code)) {
-            throw new RuntimeException("Wrong ID. Please enter Valid id..!");
+    public ItemDTO searchItemId(String code, String name) {
+         Item item = itemRepo.findItemByCodeOrName(code, name);
+        if (item == null) {
+            throw new RuntimeException("item not found with code: " + code + " or name: " + name);
         }
-        Item item = itemRepo.findById(code).get();
         return mapper.map(item, ItemDTO.class);
     }
 

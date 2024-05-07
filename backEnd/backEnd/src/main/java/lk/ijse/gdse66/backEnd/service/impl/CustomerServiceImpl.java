@@ -2,8 +2,11 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.CustomerDTO;
+import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
+import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
 import lk.ijse.gdse66.backEnd.entity.Customer;
 import lk.ijse.gdse66.backEnd.entity.Employee;
+import lk.ijse.gdse66.backEnd.entity.Supplier;
 import lk.ijse.gdse66.backEnd.repo.CustomerRepo;
 import lk.ijse.gdse66.backEnd.service.CustomerService;
 import org.modelmapper.ModelMapper;
@@ -55,8 +58,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO searchCusId(String id) {
-        return null;
+    public CustomerDTO searchCusId(String code, String name) {
+        Customer customer = customerRepo.findCustomerByCodeOrName(code, name);
+        if (customer == null) {
+            throw new RuntimeException("Employee not found with code: " + code + " or name: " + name);
+        }
+        return mapper.map(customer, CustomerDTO.class);
     }
 
     @Override

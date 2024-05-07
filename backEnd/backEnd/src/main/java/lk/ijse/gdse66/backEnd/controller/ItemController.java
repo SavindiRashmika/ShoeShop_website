@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.backEnd.controller;
 
+import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 import lk.ijse.gdse66.backEnd.entity.Supplier;
 import lk.ijse.gdse66.backEnd.service.ItemService;
@@ -29,24 +30,16 @@ public class ItemController {
     public ResponseUtil saveItem(@ModelAttribute ItemDTO itemDTO){
         System.out.println(itemDTO.toString());
 
-        // Check if the supplier object is null
         if(itemDTO.getSupplier() == null) {
             return new ResponseUtil("500", "Supplier information is missing!", null);
         }
-
-        // Retrieve supplier information from the DTO
         String supplierId = itemDTO.getSupplier().getCode();
         String supName = itemDTO.getSupName();
-
-        // Create a new Supplier entity
         Supplier supplier = new Supplier();
         supplier.setCode(supplierId);
         supplier.setName(supName);
-
-        // Set the Supplier entity back to the ItemDTO
         itemDTO.setSupplier(supplier);
 
-        // Save the item
         itemService.saveItem(itemDTO);
 
         return new ResponseUtil("200", "Successfully Registered.!", null);
@@ -67,10 +60,16 @@ public class ItemController {
         return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchEmployee")
+   /* @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchItem")
     public ItemDTO searchItemId(String code){
         return itemService.searchItemId(code);
     }
+*/
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchItem")
+    public ItemDTO searchItemId(@RequestParam String code, @RequestParam String name){
+        return itemService.searchItemId(code, name); // Adjusted method call
+    }
 }

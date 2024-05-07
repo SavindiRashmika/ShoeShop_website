@@ -3,6 +3,7 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
+import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
 import lk.ijse.gdse66.backEnd.entity.Employee;
 import lk.ijse.gdse66.backEnd.repo.EmployeeRepo;
 import lk.ijse.gdse66.backEnd.service.EmployeeService;
@@ -56,13 +57,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepo.deleteById(id);
     }
 
-    @Override
-    public EmployeeDTO searchEmpId(String name) {
-       /* if (!employeeRepo.existsById(id)) {
+
+  /*  @Override
+    public EmployeeDTO searchEmpId(String code) {
+       *//* if (!employeeRepo.existsById(code)) {
             throw new RuntimeException("Wrong ID. Please enter Valid id..!");
-        }*/
-        return employeeRepo.findEmployeeByName(name);
+        }
+        return mapper.map(employeeRepo.findById(code).get(), EmployeeDTO.class);*//*
+        return null;
+
+    }*/
+
+    @Override
+    public EmployeeDTO searchEmpId(String code, String name) {
+        Employee employee = employeeRepo.findEmployeeByCodeOrName(code, name);
+        if (employee == null) {
+            throw new RuntimeException("Employee not found with code: " + code + " or name: " + name);
+        }
+        return mapper.map(employee, EmployeeDTO.class);
     }
+
 
     @Override
     public CustomDTO employeeIdGenerate() {

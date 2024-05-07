@@ -3,6 +3,7 @@ package lk.ijse.gdse66.backEnd.controller;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.CustomerDTO;
+import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
 import lk.ijse.gdse66.backEnd.embeded.Address;
 import lk.ijse.gdse66.backEnd.service.CustomerService;
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
@@ -54,10 +55,15 @@ public class CustomerController {
         return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+    /*@ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchCustomer")
     public CustomerDTO searchCusId(String code){
         return service.searchCusId(code);
+    }*/
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchCustomer")
+    public CustomerDTO searchCusId(@RequestParam String code, @RequestParam String name){
+        return service.searchCusId(code, name); // Adjusted method call
     }
 
     @ResponseStatus(HttpStatus.CREATED)
