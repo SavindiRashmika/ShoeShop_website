@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Item view</title>
+  <meta name="theme-color" content="red">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width initial, scale=1.0">
+  <link rel="stylesheet" href="../assets/normalize.css">
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../style/style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
+
+
+</head>
+<body>
+<main>
+  <section>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="#" class="profile">
+        <img src="../logo3.png">
+      </a>
+      <a href="#" class="logo ">
+        <i class=''></i>
+        <div class="logo-name"><span>HELLO</span>SHOP</div>
+      </a>
+      <ul class="side-menu">
+        <li><a href="../page/dashboardAdmin.html"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
+        <li><a href="../page/customer.html"><i class='bx bx-user-pin'></i><span> Customer </span></a></li>
+        <li><a href="../page/style"><i class='bx bxs-objects-vertical-bottom'></i><span>Sales</span></a></li>
+        <li><a href="../page/viewEmployee.html"><i class='bx bx-purchase-tag'></i><span>Employee</span></a></li>
+        <li class="active"><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i><span>Stock</span></a></li>
+        <li><a href="../page/viewSupplier.html"><i class='bx bx-group'></i><span>Supplier</span></a></li>
+        <li><a href="../page/style"><i class='bx bx-cog'></i><span>Settings</span></a></li>
+      </ul>
+      <ul class="side-menu">
+        <li id="log_out">
+          <a href="#" class="logout">
+            <i class='bx bx-log-out-circle'></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <div class="content">
+      <!-- Navbar -->
+      <nav>
+        <i class='bx bx-menu' ></i>
+        <form action="#">
+          <div class="form-input"  onload="startTime()" >
+            <div id="MyClockDisplay" class="clock">
+              <div id="clockDate">
+                <div class="clockDate-wrapper">
+                  <div id="clock"></div>
+                  <div id="date"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <input type="checkbox" id="theme-toggle" hidden>
+        <label for="theme-toggle" class="theme-toggle"></label>
+
+        <a href="#" class="notif">
+          <i class='bx bx-bell'></i>
+          <span class="count">3</span>
+        </a>
+        <a href="#" class="profile">
+          <img src="../img/other/p1.jpg" height="70" width="70"/>
+        </a>
+      </nav>
+      <!-- End of Navbar -->
+    </div>
+
+
+  </section>
+
+  <section class="content">
+    <h1>Order Manage </h1>
+    <div class="cusF">
+
+
+    </div>
+  </section>
+
+</main>
+
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/viewItem.js"></script>
+<script src="../controller/customer.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
