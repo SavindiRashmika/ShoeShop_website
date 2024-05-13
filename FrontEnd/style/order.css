@@ -1,0 +1,13 @@
+
+main .content .info-O {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
+}
+main .content .info-O li {
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+
+}

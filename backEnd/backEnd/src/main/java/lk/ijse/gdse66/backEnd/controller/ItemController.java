@@ -1,10 +1,9 @@
 package lk.ijse.gdse66.backEnd.controller;
 
-import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
+
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 import lk.ijse.gdse66.backEnd.entity.Supplier;
 import lk.ijse.gdse66.backEnd.service.ItemService;
-import lk.ijse.gdse66.backEnd.service.SupplierService;
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,7 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
-    @Autowired
-    private SupplierService supplierService;
+
 
     @GetMapping
     public ResponseUtil getAllItem(){
@@ -60,12 +58,11 @@ public class ItemController {
         return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
-   /* @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchItem")
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchI")
     public ItemDTO searchItemId(String code){
         return itemService.searchItemId(code);
     }
-*/
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchItem")

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -61,7 +62,16 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO searchCusId(String code, String name) {
         Customer customer = customerRepo.findCustomerByCodeOrName(code, name);
         if (customer == null) {
-            throw new RuntimeException("Employee not found with code: " + code + " or name: " + name);
+            throw new RuntimeException("Customer not found with code: " + code + " or name: " + name);
+        }
+        return mapper.map(customer, CustomerDTO.class);
+    }
+
+    @Override
+    public CustomerDTO searchCusId(String code) {
+        Optional<Customer> customer = customerRepo.findById(code);
+        if (customer == null) {
+            throw new RuntimeException("customer not found with code: " + code);
         }
         return mapper.map(customer, CustomerDTO.class);
     }

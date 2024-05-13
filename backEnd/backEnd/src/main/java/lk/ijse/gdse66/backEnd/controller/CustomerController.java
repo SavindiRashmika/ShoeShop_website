@@ -55,15 +55,16 @@ public class CustomerController {
         return new ResponseUtil("200", "Successfully Deleted. :"+ code,null);
     }
 
-    /*@ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(path = "/searchCustomer")
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchCus")
     public CustomerDTO searchCusId(String code){
         return service.searchCusId(code);
-    }*/
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/searchCustomer")
     public CustomerDTO searchCusId(@RequestParam String code, @RequestParam String name){
-        return service.searchCusId(code, name); // Adjusted method call
+        return service.searchCusId(code, name);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
