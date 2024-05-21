@@ -108,7 +108,7 @@ $("#form1").on("keypress", function (event) {
                         "<td>" + status + "</td>" +
                         "</tr>";
                     $("#tblItem").append(row);
-                    blindClickEventsI();
+                    /*blindClickEventsI();*/
                 }
             },
             error: function (error) {

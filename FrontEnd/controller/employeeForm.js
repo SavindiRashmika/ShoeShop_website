@@ -101,7 +101,8 @@ $("#btnSave").click(function (){
         alert("Error");
        // swal("Error", "Take Employee Photo.!", "error");
     }
-    let formData = $("#empForm").serialize();
+    let formData = $("#empForm").serializeArray();
+    formData.push({name: "pic", value: imageUrl});
    /* let empId = $("#empId").val();
     formData += "&code=" + empId;*/
     console.log(formData);
@@ -195,8 +196,8 @@ function blindClickEventsE() {
 
 $("#btnUpdate").click(function () {
     let formData = $("#empForm").serialize();
-    let empId = $("#empId").val();
-    formData += "&code=" + empId;
+    /*let empId = $("#empId").val();
+    formData += "&code=" + empId;*/
     console.log(formData);
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
@@ -230,7 +231,7 @@ $("#btnUpdate").click(function () {
 $("#btnDelete").click(function () {
     let id = $("#empId").val();
     $.ajax({
-        url: "http://localhost:8080/backEnd/api/v1/employee/?code=" + id + "",
+        url: "http://localhost:8080/backEnd/api/v1/employee?code=" + id + "",
         method: "DELETE",
         dataType: "json",
         success: function (resp) {

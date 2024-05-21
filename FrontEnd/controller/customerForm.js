@@ -1,25 +1,27 @@
 
 loadAllCus();
 
-// Get the current date and time
-let currentDateTime = new Date();
+function updateDateTime() {
+    let currentDateTime = new Date();
 
-// Get the date components
-let year = currentDateTime.getFullYear();
-let month = currentDateTime.getMonth() + 1;
-let day = currentDateTime.getDate();
+    let year = currentDateTime.getFullYear();
+    let month = currentDateTime.getMonth() + 1;
+    let day = currentDateTime.getDate();
 
-// Get the time components
-let hours = currentDateTime.getHours();
-let minutes = currentDateTime.getMinutes();
-let seconds = currentDateTime.getSeconds();
+    let hours = currentDateTime.getHours();
+    let minutes = currentDateTime.getMinutes();
+    let seconds = currentDateTime.getSeconds();
 
-// Format the date and time as strings
-let formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-let formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    let formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    let formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-// Set the value of the input field with id 'cusName' to the formatted date and time
-$('#recentPurchaseDate').val(`${formattedDate} ${formattedTime}`);
+    $('#recentPurchaseDate').val(`${formattedDate} ${formattedTime}`);
+}
+
+updateDateTime();
+
+setInterval(updateDateTime, 1000);
+
 
 
 
@@ -68,7 +70,7 @@ function loadAllCus() {
                 let cusId = i.code;
                 let name = i.name;
                 let gender = i.gender
-                let contact = i.loyaltyDate
+                let contact = i.loyaltyDate;
                 let level = i.level;
                 let points = i.loyaltyPoints;
                 let dob = i.dob;
@@ -101,7 +103,6 @@ function loadAllCus() {
 }
 
 $("#btnSaveC").click(function (){
-    $('#recentPurchaseDate').val(`${formattedDate} ${formattedTime}`);
     let formData = $("#cusForm").serialize();
     console.log(formData);
     $.ajax({
@@ -292,3 +293,23 @@ $("#form1").on("keypress", function (event) {
         });
     }
 });
+/*
+function updateLoyaltyLevel(points) {
+    let level;
+    if (points >= 200) {
+        level = "GOLD";
+    } else if (points >= 100) {
+        level = "SILVER";
+    } else if (points >= 50) {
+        level = "BRONZE";
+    } else {
+        level = "NEW";
+    }
+    return level;
+}
+
+document.getElementById("loyaltyPoints").addEventListener("input", function () {
+    let points = parseInt(this.value, 10) || 0;
+    let level = updateLoyaltyLevel(points);
+    document.getElementById("level").value = level;
+});*/

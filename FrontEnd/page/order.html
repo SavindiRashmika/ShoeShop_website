@@ -1,16 +1,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Item view</title>
+  <title> Order</title>
   <meta name="theme-color" content="red">
   <meta name="robots" content="index,follow">
-  <meta name="viewport" content="width=device-width initial, scale=1.0">
   <link rel="stylesheet" href="../assets/normalize.css">
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
-
+  <link rel="stylesheet" href="../style/order.css">
+  <link rel="stylesheet" href="../style/admin.css">
 
 </head>
 <body>
@@ -26,13 +26,13 @@
         <div class="logo-name"><span>HELLO</span>SHOP</div>
       </a>
       <ul class="side-menu">
-        <li><a href="../page/dashboardAdmin.html"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></li>
-        <li><a href="../page/customer.html"><i class='bx bx-user-pin'></i><span> Customer </span></a></li>
-        <li><a href="../page/style"><i class='bx bxs-objects-vertical-bottom'></i><span>Sales</span></a></li>
-        <li><a href="../page/viewEmployee.html"><i class='bx bx-purchase-tag'></i><span>Employee</span></a></li>
-        <li class="active"><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i><span>Stock</span></a></li>
-        <li><a href="../page/viewSupplier.html"><i class='bx bx-group'></i><span>Supplier</span></a></li>
-        <li><a href="../page/style"><i class='bx bx-cog'></i><span>Settings</span></a></li>
+        <li><b><a href="../page/dashboardAdmin.html"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></b></li>
+        <li><b><a href="../page/customer.html"><i class='bx bx-user-pin'></i><span> Customer </span></a></b></li>
+        <li class="active"><b><a href="../page/order.html"><i class='bx bxs-objects-vertical-bottom'></i><span>Sales</span></a></b></li>
+        <li><b><a href="../page/viewEmployee.html"><i class='bx bx-purchase-tag'></i><span>Employee</span></a></b></li>
+        <li><b><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i><span>Stock</span></a></b></li>
+        <li><b><a href="../page/viewSupplier.html"><i class='bx bx-group'></i><span>Supplier</span></a></b></li>
+        <li><b><a href="../page/style"><i class='bx bx-cog'></i><span>Settings</span></a></b></li>
       </ul>
       <ul class="side-menu">
         <li id="log_out">
@@ -74,26 +74,226 @@
         </a>
       </nav>
       <!-- End of Navbar -->
+      <div class="cusF">
+        <h4>Order Manage</h4>
+        <ul id="info">
+          <li>
+
+            <div class="row">
+              <div class="col">
+                <label for="oid" class="form-label">Order ID :</label>
+                <input class="form-control form-label" id="oid" name="oid" type="text" readonly>
+              </div>
+              <div class="col">
+                <label class="form-label">Date :</label>
+                <input class="form-control" id="oDate" name="date" type="text">
+              </div>
+              <div class="col">
+                <label for="customId" class="form-label">Customer-Id :</label>
+                <select id="customId" name="custId" class="form-select" aria-label="Default select example" >
+                  <option  value="CUSTOMER_ID">cash</option>
+                </select>
+                <!--<input id="customId" name="customId" class="form-control" type="text">-->
+              </div>
+              <div class="col">
+                <label for="custName" class="form-label">Customer-Name :</label>
+                <input class="form-control" name="customer_name" id="custName" type="text">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="itemId" class="form-label"> Item code</label>
+                <select id="itemId" name="code" class="form-select" aria-label="Default select example" >
+                  <option  value="ITEM_ID"></option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="itemName" class="form-label">Item name</label>
+                <input id="itemName" name="itemName" type="text" class="form-control">
+              </div>
+              <div class="col">
+                <label for="qprice" class="form-label">Unit Price :</label>
+                <input class="form-control" id="qprice" type="text">
+              </div>
+              <div class="col">
+                <label for="qtyH" class="form-label">QtyOnHand :</label>
+                <input class="form-control" id="qtyH" type="text">
+              </div>
+              <div class="col">
+                <label for="qty" class="form-label">Order qty</label>
+                <input class="form-control" id="qty" min="1" type="number">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="empName">Cashier :</label>
+                <input class="form-control" id="empName" type="text">
+              </div>
+              <div class="col">
+                <label for="tPoint" class="form-label">Loyalty Point :</label>
+                <input class="form-control" name="totalPoints" id="tPoint" type="text">
+              </div>
+              <div class="col">
+                <label for="cusLevel" class="form-label">Level</label>
+                <input id="cusLevel" name="level" type="text" class="form-control">
+                </div>
+
+              <div class="col">
+                <button type="button" id="BTN" class="btn btn-primary"><i class="fa fa-shopping-cart">&nbsp;</i>Add To Cart</button>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Recent Orders</h3>
+              <i class='bx bx-search' ></i>
+              <i class='bx bx-filter' ></i>
+            </div>
+            <table>
+              <thead>
+              <tr>
+                <th>Item_code</th>
+                <th>Item_Name</th>
+                <th>Unit Price</th>
+                <th>order qty</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+              <tbody id="tblOrder">
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="todo-o">
+
+            <div class=" row">
+              <label for="payM" class="col-sm-6 col-form-label">Payment Method</label>
+              <div class="col">
+                <select id="payM" name="paymentMethod" class="form-select" aria-label="Default select example" >
+                  <option  value="CASH">Cash</option>
+                  <option  value="CARD">Card</option>
+                </select>
+              </div>
+            </div>
+
+            <hr>
+
+
+            <div class="row">
+              <div class="col-sm-8">
+                <label for="amount" class="col-sm-2 col-form-label">Amount:</label>
+                <input type="text" class="form-control" id="amount">
+              </div>
+              <div class="col">
+                <label for="discount" class="col-sm-2 col-form-label">Discount:</label>
+                <input type="text" class="form-control" id="discount" value="0">
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="mb-3 row">
+              <label for="total" class="col-sm-2 col-form-label">Total</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="total">
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="cash">Cash :</label>
+                <input class="form-control" id="cash" type="text">
+                <strong class="control-error" id="lblCheck"></strong>
+              </div>
+              <div class="col">
+                <label for="balance">Balance :</label>
+                <input class="form-control" id="balance" type="text">
+              </div>
+            </div>
+
+            <button type="button" id="placeBtn">Place Order</button>
+
+
+          </div>
+
+        </div>
+      </div>
+
+      <h1>Order Details </h1>
+      <div class="cusF">
+        <div class="table-data">
+          <div class="box-info-tbl">
+
+            <div class="input-group">
+              <div class="form-outline" data-mdb-input-init>
+                <input type="search" id="form1" class="form-control" style="width: 300px" placeholder="Search" />
+                <label class="form-label" for="form1"></label>
+              </div>
+              <button type="button" class="btn btn-primary" style="height:20px; position: relative; height: 38px; right: 40px;" data-mdb-ripple-init>
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
+            <table class="table table-bordered table-hover ">
+              <thead class="table-success bg-success">
+              <tr>
+                <th>Order Id</th>
+                <th>Order Date</th>
+                <th>Customer</th>
+                <th>payment method</th>
+                <th>Total</th>
+                <th>cashier name</th>
+              </tr>
+              </thead>
+
+              <tbody id="tblSaleD">
+
+              </tbody>
+            </table>
+
+
+            <table class="table table-bordered table-hover ">
+              <thead class="table-success bg-success">
+              <tr>
+                <th>Order Id</th>
+                <th>Item Code</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+
+              <tbody id="tblSale">
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
     </div>
 
 
-  </section>
-
-  <section class="content">
-    <h1>Order Manage </h1>
-    <div class="cusF">
-
-
-    </div>
   </section>
 
 </main>
 
 <script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
-<script src="../controller/viewItem.js"></script>
+<script src="../controller/OrderForm.js"></script>
+<script src="../controller/OrderDetails.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
+

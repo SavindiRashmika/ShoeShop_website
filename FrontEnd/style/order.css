@@ -1,13 +1,50 @@
 
-main .content .info-O {
+main .content #info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-gap: 24px;
     margin-top: 36px;
 }
-main .content .info-O li {
-    padding: 24px;
+
+
+main .content .cusF #info>li{
+    padding: 15px;
     background: var(--light);
     border-radius: 20px;
+}
 
+#placeBtn{
+    width: 250px;
+    height: 40px;
+    color: #F9F9F9;
+    background: var(--other);
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
+    margin-left: 18%;
+}
+
+#BTN{
+
+    height: 40px;
+    color: #F9F9F9;
+    background: var(--primary);
+    border: none;
+    border-radius: 15px;
+    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;*/
+    cursor: pointer;
+}
+
+main .content .table-data .todo-o{
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+main .content .table-data .todo-o .row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    margin-bottom: 25px;
 }

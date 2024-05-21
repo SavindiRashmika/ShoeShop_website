@@ -52,7 +52,6 @@ function loadAllItem() {
             blindClickEventsI();
         },
         error: function (error) {
-            // Handle errors with a message
             let message = JSON.parse(error.responseText).message;
             Swal.fire({
                 icon: "error",

@@ -29,41 +29,48 @@ toggler.addEventListener('change', function () {
     }
 });
 
+/*
 document.addEventListener("DOMContentLoaded", function() {
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"],input[type="date"], select');
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"],input[type="date"], select option, tbody tr');
 
     inputs.forEach(input => {
         input.addEventListener('click', function() {
-            // Get the table body element
-            const tableBody = document.querySelector('tbody');
-            // Change its background color
-            tableBody.style.backgroundColor = 'var(--gray)';
-            this.style.backgroundColor = 'var(--gray)';
+            //this.style.backgroundColor = 'var(--gray)';
             this.style.color = 'var(--dark)';
         });
 
         input.addEventListener('blur', function() {
-            // Reset the background color of the table body
-            const tableBody = document.querySelector('tbody');
-            tableBody.style.backgroundColor = '#383838';
             this.style.backgroundColor = 'var(--gray)';
-            this.style.border = '1px solid #383838';
+
 
             // Custom styling for select box options
-           /* const selectOptions = this.querySelectorAll('option');
+           /!* const selectOptions = this.querySelectorAll('option');
             selectOptions.forEach(option => {
-                option.style.backgroundColor = 'black'; // Change background color to black
+                option.style.backgroundColor = 'var(--light)'; // Change background color to black
                 option.style.color = 'var(--dark)';
+
+            const selectOptions = document.querySelectorAll('select option');
+            selectOptions.forEach(option => {
+                option.style.backgroundColor = '#333';
+                option.style.color = 'var(--dark)';
+
+            });
+            });*!/
+    });
+    });
+});
 */
 
-                const selectOptions = document.querySelectorAll('select option');
-                selectOptions.forEach(option => {
-                    option.style.backgroundColor = '#333';
-                    option.style.color = 'var(--dark)';
+    // Custom JavaScript to highlight table row on click
+    document.addEventListener('DOMContentLoaded', function () {
+    const rows = document.querySelectorAll('table tbody tr');
 
-        });
-    });
-    });
+        rows.forEach(rows => {
+            rows.addEventListener('blur', function() {
+                this.style.backgroundColor = 'var(--gray)';
+                this.style.color = 'var(--dark)';
+            });
+});
 });
 
 

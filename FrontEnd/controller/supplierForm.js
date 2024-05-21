@@ -59,7 +59,7 @@ function generateSupplierID() {
 }*/
 
 function loadAllSup() {
-    $("#tblSupplier").empty(); // Clearing the correct table
+    $("#tblSupplier").empty();
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "GET",
