@@ -12,22 +12,23 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @IdClass(SaleDetails_PK.class)
+@Table(name = "sale_details")
 public class SaleDetails {
 
     @Id
-    private String oId;
+    private String oid;
     @Id
-    private String code;
+    private String itemCode;
 
 
     private int qty;
     private double unitPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "oId",insertable = false,updatable = false)
-    private Sales sale_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "oid",referencedColumnName = "oid",insertable = false, updatable = false)
+    private Sales sale;
 
-    @ManyToOne
-    @JoinColumn(name = "code",referencedColumnName = "code",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "itemCode",referencedColumnName = "code",insertable = false, updatable = false)
     private Item items;
 }

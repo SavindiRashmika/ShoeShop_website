@@ -36,6 +36,6 @@ public class Customer {
     private String email;
     private String recentPurchaseDate;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "customerName")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "customer")
     private List<Sales> sales = new ArrayList<>();
 }

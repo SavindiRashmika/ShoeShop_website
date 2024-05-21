@@ -11,6 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class SaleDetails_PK implements Serializable {
-    private String oId;
-    private String code;
+    private String oid;
+    private String itemCode;
 }
