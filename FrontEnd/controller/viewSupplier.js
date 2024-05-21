@@ -4,10 +4,15 @@ loadAllSupV();
 
 function loadAllSupV() {
     $("#tblSupplier").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -51,12 +56,16 @@ function loadAllSupV() {
 $("#form1").on("input", function (){
     var search = $("#form1").val();
     $("#tblSupplier").empty();
-
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier?code=" + search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             if (res) {
@@ -91,7 +100,8 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblSupplier").empty();
-
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier",
             method: "GET",
@@ -101,6 +111,9 @@ $("#form1").on("keypress", function (event) {
             },
             contentType: "application/json",
             dataType: "json",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
             success: function (res) {
                 console.log(res);
                 if (res) {

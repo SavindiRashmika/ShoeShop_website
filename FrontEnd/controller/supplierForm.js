@@ -3,11 +3,16 @@ loadAllSup();
 
 function generateSupplierID() {
     $("#supId").val("S00-001");
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier/SupplierIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function(resp) {
             let id = resp.value;
             console.log("id" + id);
@@ -60,10 +65,15 @@ function generateSupplierID() {
 
 function loadAllSup() {
     $("#tblSupplier").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -120,13 +130,17 @@ function setTextFieldValuesS(supName, category, address1, address2, address3, co
 $("#btnSaveS").click(function (){
 
     let formData = $("#supForm").serialize();
-
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "POST",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllSup();
@@ -184,11 +198,16 @@ $("#btnUpdateS").click(function () {
     /*let empId = $("#empId").val();
     formData += "&code=" + empId;*/
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "PUT",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllSup();
@@ -215,10 +234,15 @@ $("#btnUpdateS").click(function () {
 
 $("#btnDeleteS").click(function () {
     let id = $("#supId").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier?code=" + id + "",
         method: "DELETE",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             console.log(resp);
             loadAllSup();
@@ -248,7 +272,8 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) { // Check if Enter key is pressed
         var search = $("#form1").val(); // Get the value from the input field
         $("#tblSupplier").empty(); // Clear previous search results
-
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/supplier/searchSupplier",
             method: "GET",
@@ -258,6 +283,9 @@ $("#form1").on("keypress", function (event) {
             },
             contentType: "application/json",
             dataType: "json",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
             success: function (res) {
                 console.log(res);
                 if (res) {

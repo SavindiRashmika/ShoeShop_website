@@ -8,10 +8,15 @@ profitMargin();
 
 function loadAllItem() {
     $("#tblItem").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             // Loop through the response data and populate the table rows
@@ -66,10 +71,15 @@ function loadAllItem() {
 
 function loadAllSuppliers() {
     $("#supplier_id").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             for (let i of res.data) {
@@ -87,11 +97,16 @@ function loadAllSuppliers() {
 
 $("#supplier_id").click(function () {
     var search = $("#supplier_id").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/supplier/searchSup?code=" + search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             $("#supName").val(res.name);
@@ -113,16 +128,17 @@ $("#btnSaveI").click(function () {
 
     let formData = $("#itemForm").serializeArray();
     formData.push({name: "itemPicture", value: imageUrl});
-
-    // Serialize form data
-   /* let formData = $("#itemForm").serialize();*/
-
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item",
         method: "POST",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllItem();
@@ -170,13 +186,17 @@ $("#btnUpdateI").click(function () {
 
     let formData = $("#itemForm").serializeArray();
     formData.push({name: "itemPicture", value: imageUrl});
-
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     console.log(formData);
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item",
         method: "PUT",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllItem();
@@ -202,10 +222,15 @@ $("#btnUpdateI").click(function () {
 
 $("#btnDeleteI").click(function () {
     let id = $("#itemId").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item?code=" + id + "",
         method: "DELETE",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             console.log(resp);
             loadAllItem();
@@ -289,7 +314,8 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblItem").empty();
-
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/item/searchItem",
             method: "GET",
@@ -299,6 +325,9 @@ $("#form1").on("keypress", function (event) {
             },
             contentType: "application/json",
             dataType: "json",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
             success: function (res) {
                 console.log(res);
                 if (res) {

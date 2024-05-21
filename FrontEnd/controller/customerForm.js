@@ -26,11 +26,16 @@ setInterval(updateDateTime, 1000);
 
 
 function generateCustomerID() {
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer/cusIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             let id = resp.value;
             console.log("id" + id);
@@ -59,10 +64,15 @@ function generateCustomerID() {
 
 function loadAllCus() {
     $("#tblCustomer").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -105,11 +115,16 @@ function loadAllCus() {
 $("#btnSaveC").click(function (){
     let formData = $("#cusForm").serialize();
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer",
         method: "POST",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllCus();
@@ -185,11 +200,16 @@ function setTextFieldValuesC(cusName, cusGender, contact, cusLevel, loyaltyPoint
 $("#btnUpdateC").click(function () {
     let formData = $("#cusForm").serialize();
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer",
         method: "PUT",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllCus();
@@ -216,10 +236,15 @@ $("#btnUpdateC").click(function () {
 
 $("#btnDeleteC").click(function () {
     let id = $("#cusId").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer?code=" + id + "",
         method: "DELETE",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             console.log(resp);
             loadAllCus();
@@ -249,6 +274,8 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblCustomer").empty();
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
 
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/customer/searchCustomer",
@@ -259,6 +286,9 @@ $("#form1").on("keypress", function (event) {
             },
             contentType: "application/json",
             dataType: "json",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
             success: function (res) {
                 console.log(res);
                 if (res) {

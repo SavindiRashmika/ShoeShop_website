@@ -5,10 +5,15 @@ loadAllOrderDetails();
 
 function loadAllOrders() {
     $("#tblSale").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders/LoadOrders",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -46,10 +51,15 @@ function loadAllOrders() {
 
 function loadAllOrderDetails() {
     $("#tblSaleD").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders/LoadOrderDetails",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 

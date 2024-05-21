@@ -3,10 +3,15 @@ loadAllItemV();
 
 function loadAllItemV() {
     $("#tblItem").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             // Loop through the response data and populate the table rows
@@ -64,13 +69,17 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblItem").empty();
-
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/item/searchItem",
             method: "GET",
             data: {
                 code: search,
                 name: search
+            },
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
             },
             contentType: "application/json",
             dataType: "json",

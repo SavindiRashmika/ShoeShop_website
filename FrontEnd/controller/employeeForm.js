@@ -4,11 +4,16 @@
 loadAllEmp();
 
 function generateEmployeeID() {
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee/EmployeeIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             let id = resp.value;
             console.log("id" + id);
@@ -43,10 +48,15 @@ function generateEmployeeID() {
 
 function loadAllEmp() {
     $("#tblEmployee").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -106,11 +116,16 @@ $("#btnSave").click(function (){
    /* let empId = $("#empId").val();
     formData += "&code=" + empId;*/
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
         method: "POST",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
                 loadAllEmp();
@@ -199,11 +214,16 @@ $("#btnUpdate").click(function () {
     /*let empId = $("#empId").val();
     formData += "&code=" + empId;*/
     console.log(formData);
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
         method: "PUT",
         data: formData,
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             loadAllEmp();
@@ -230,10 +250,15 @@ $("#btnUpdate").click(function () {
 
 $("#btnDelete").click(function () {
     let id = $("#empId").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee?code=" + id + "",
         method: "DELETE",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (resp) {
             console.log(resp);
             loadAllEmp();
@@ -285,6 +310,8 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblEmployee").empty();
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee",
             method: "GET",
@@ -294,6 +321,9 @@ $("#form1").on("keypress", function (event) {
             },
             contentType: "application/json",
             dataType: "json",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
             success: function (res) {
                 console.log(res);
                 if (res) {

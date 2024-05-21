@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/font-awsome/css/all.min.css">
-
 </head>
 <body>
 <img src="../logo3.png" class="log">
@@ -20,8 +19,8 @@
             <div class="form">
                 <h5 id="h5">SIGN IN</h5>
                 <div class="col mt-2 ">
-                    <label for="priceS" class="form-label">Name </label>
-                    <input id="priceS" name="priceS" type="text" class="form-control">
+                    <label for="user_Name" class="form-label">Name </label>
+                    <input id="user_Name" type="text" class="form-control">
                 </div>
                 <div class="col mt-2">
                     <label for="password" class="form-label">Password </label>
@@ -29,15 +28,10 @@
                     <i class='bx bx-hide eye-icon'></i>
                 </div>
                 <div class="col mt-2">
-                    <label for="category" class="form-label">Category</label>
-                    <select id="category" name="category" class="form-select" aria-label="Default select example">
-                        <option selected></option>
-                        <option value="1">Admin</option>
-                        <option value="2">user</option>
-                    </select>
+                   //////
                 </div>
                 <a href="../page/dashboardAdmin.html">
-                <button class="animated-button save mb-2 me-2"><span> Submit</span><span class="saveS"></span></button>
+                <button id="btnLogin" class="animated-button save mb-2 me-2"><span> Submit</span><span class="saveS"></span></button>
                 </a>
                 <div class="form-link ms-4">
                     <span>Don't have an account? <a href="../page/register.html" class="link signup-link">Signup</a></span>
@@ -47,5 +41,10 @@
     </div>
 </section>
 
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/login.js"></script>
+<script src="../assets/font-awsome/js/all.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

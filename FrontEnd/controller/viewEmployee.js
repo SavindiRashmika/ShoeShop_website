@@ -3,10 +3,15 @@
 loadAllEmpV();
 function loadAllEmpV() {
     $("#tblEmployee").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/employee",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
 
@@ -100,12 +105,17 @@ $("#form1").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#form1").val();
         $("#tblEmployee").empty();
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/employee/searchEmployee",
             method: "GET",
             data: {
                 code: search,
                 name: search
+            },
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
             },
             contentType: "application/json",
             dataType: "json",

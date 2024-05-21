@@ -8,11 +8,16 @@ $(document).ready(function() {
 });
 
 function generateOrderID() {
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders/OrderIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function(resp) {
             let id = resp.value;
             console.log("id: " + id);
@@ -56,11 +61,16 @@ function loadAllCust() {
 
 $("#customId").click(function () {
     var search = $("#customId").val();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer/searchCus?code="+ search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             $("#custName").val(res.name);
@@ -102,10 +112,15 @@ function updateLoyaltyLevel(points) {
 
 function loadAllIte() {
     $("#itemId").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/item",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             for (let i of res.data) {
@@ -144,13 +159,17 @@ function loadAllIte() {
 $("#itemName").on("keypress", function (event) {
     if (event.which === 13) {
         var search = $("#itemName").val();
-
+        performAuthenticatedRequest();
+        const accessToken = localStorage.getItem('accessToken');
         $.ajax({
             url: "http://localhost:8080/backEnd/api/v1/item/searchItem",
             method: "GET",
             data: {
                 code: search,
                 name: search
+            },
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
             },
             contentType: "application/json",
             dataType: "json",
@@ -357,12 +376,17 @@ $("#placeBtn").click(function () {
         },
         saleDetails: orderDetails
     };
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
 
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders",
         method: "POST",
         contentType: "application/json",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         data: JSON.stringify(orderOb),
         success: function (res) {
             Swal.fire({
