@@ -26,17 +26,17 @@
         <div class="logo-name"><span>HELLO</span>SHOP</div>
       </a>
       <ul class="side-menu">
-        <li><b><a href="../page/dashboardAdmin.html"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a></b></li>
-        <li><b><a href="../page/customer.html"><i class='bx bx-user-pin'></i><span> Customer </span></a></b></li>
-        <li class="active"><b><a href="../page/order.html"><i class='bx bxs-objects-vertical-bottom'></i><span>Sales</span></a></b></li>
-        <li><b><a href="../page/viewEmployee.html"><i class='bx bx-purchase-tag'></i><span>Employee</span></a></b></li>
-        <li><b><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i><span>Stock</span></a></b></li>
-        <li><b><a href="../page/viewSupplier.html"><i class='bx bx-group'></i><span>Supplier</span></a></b></li>
-        <li><b><a href="../page/style"><i class='bx bx-cog'></i><span>Settings</span></a></b></li>
+        <li><b><a href="../page/cashierDashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></b></li>
+        <li class="active"><b><a href="../page/order.html"><i class='bx bx-user-pin'></i>Orders</a></b></li>
+        <li><b><a href="../page/orderDetail.html"><i class='bx bxs-objects-vertical-bottom'></i>Order Details</a></b></li>
+        <li><b><a href="../page/viewSupplier.html"><i class='bx bx-purchase-tag'></i>Supplier</a></b></li>
+        <li><b><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i>Item</a></b></li>
+        <li><b><a href="../page/viewEmployee.html"><i class='bx bx-group'></i>Employee</a></b></li>
+        <li><b><a href="../page/style.css"><i class='bx bx-cog'></i>Settings</a></b></li>
       </ul>
       <ul class="side-menu">
         <li id="log_out">
-          <a href="#" class="logout">
+          <a href="../page/login.html" class="logout">
             <i class='bx bx-log-out-circle'></i>
             Logout
           </a>
@@ -118,18 +118,18 @@
               </div>
               <div class="col">
                 <label for="qtyH" class="form-label">QtyOnHand :</label>
-                <input class="form-control" id="qtyH" type="text">
+                <input class="form-control" name="qtyH" id="qtyH" type="text">
               </div>
               <div class="col">
                 <label for="qty" class="form-label">Order qty</label>
-                <input class="form-control" id="qty" min="1" type="number">
+                <input class="form-control" name="qty" id="qty" min="1" type="number">
               </div>
             </div>
 
             <div class="row">
               <div class="col">
                 <label for="empName">Cashier :</label>
-                <input class="form-control" id="empName" type="text">
+                <input class="form-control" name="name" id="empName" type="text">
               </div>
               <div class="col">
                 <label for="tPoint" class="form-label">Loyalty Point :</label>
@@ -138,7 +138,11 @@
               <div class="col">
                 <label for="cusLevel" class="form-label">Level</label>
                 <input id="cusLevel" name="level" type="text" class="form-control">
-                </div>
+              </div>
+              <div class="col">
+                <label for="status" class="form-label">status</label>
+                <input id="status" type="text" class="form-control" >
+              </div>
 
               <div class="col">
                 <button type="button" id="BTN" class="btn btn-primary"><i class="fa fa-shopping-cart">&nbsp;</i>Add To Cart</button>
@@ -193,7 +197,7 @@
               </div>
               <div class="col">
                 <label for="discount" class="col-sm-2 col-form-label">Discount:</label>
-                <input type="text" class="form-control" id="discount" value="0">
+                <input type="text" name="discount" class="form-control" id="discount" value="0">
               </div>
             </div>
 
@@ -211,7 +215,7 @@
             <div class="row mb-3">
               <div class="col">
                 <label for="cash">Cash :</label>
-                <input class="form-control" id="cash" type="text">
+                <input class="form-control" name="cash" id="cash" type="text">
                 <strong class="control-error" id="lblCheck"></strong>
               </div>
               <div class="col">
@@ -228,7 +232,7 @@
         </div>
       </div>
 
-      <h1>Order Details </h1>
+
       <div class="cusF">
         <div class="table-data">
           <div class="box-info-tbl">
@@ -288,9 +292,9 @@
 </main>
 
 <script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/validation/validation.js"></script>
 <script src="../controller/login.js"></script>
 <script src="../controller/OrderForm.js"></script>
-<script src="../controller/OrderDetails.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

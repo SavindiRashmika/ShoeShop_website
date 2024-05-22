@@ -4,16 +4,15 @@ loadAllOrders();
 loadAllOrderDetails();
 
 function loadAllOrders() {
-    $("#tblSale").empty();
     performAuthenticatedRequest();
     const accessToken = localStorage.getItem('accessToken');
-    $.ajax({
+   $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders/LoadOrders",
         method: "GET",
         dataType: "json",
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
+       headers: {
+           'Authorization': 'Bearer ' + accessToken
+       },
         success: function (res) {
             console.log(res);
 
@@ -50,29 +49,29 @@ function loadAllOrders() {
 }
 
 function loadAllOrderDetails() {
-    $("#tblSaleD").empty();
+    $("#tblSale").empty();
     performAuthenticatedRequest();
     const accessToken = localStorage.getItem('accessToken');
-    $.ajax({
+     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/orders/LoadOrderDetails",
         method: "GET",
         dataType: "json",
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
+         headers: {
+             'Authorization': 'Bearer ' + accessToken
+         },
         success: function (res) {
             console.log(res);
 
             for (let i of res.data) {
                 let oid = i.oid;
-                let date = i.itemCode;
-                let qty = i.qty;
+                let itemCode = i.itemCode;
+                let orderQty = i.qty;
                 let uPrice = i.unitPrice;
 
                 let row = "<tr>" +
                     "<td>" + oid + "</td>" +
-                    "<td>" + date + "</td>" +
-                    "<td>" + qty + "</td>" +
+                    "<td>" + itemCode + "</td>" +
+                    "<td>" + orderQty + "</td>" +
                     "<td>" + uPrice + "</td>" +
                     "</tr>";
                 $("#tblSale").append(row);

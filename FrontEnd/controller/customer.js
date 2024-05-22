@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /*------------------------------------------------------------*/
-startTime();
+/*startTime();
 function startTime() {
     var today = new Date();
     var hr = today.getHours();
@@ -108,4 +108,4 @@ function checkTime(i) {
         i = "0" + i;
     }
     return i;
-}
+}*/

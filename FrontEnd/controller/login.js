@@ -13,9 +13,14 @@ $("#btnSingUp").click(function() {
                 method: "POST",
                 data: JSON.stringify(value),
                 contentType: "application/json",
-                success: function (res, textStatus, jsXH) {
+                success: function (res) {
                     localStorage.setItem('accessToken', res.token);
-                    alert("Error User Added");
+                    Swal.fire({
+                        icon: "success",
+                        title: "user added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 },
                 error: function (ob, textStatus, error) {
                     alert("Error User Not Added");
@@ -53,9 +58,9 @@ $("#btnSingUp").click(function() {
                             localStorage.setItem('role', res.role);
                             localStorage.setItem('cashier', value.email);
                             if (res.role === "ADMIN") {
-                                window.location.href = "AdminDashBoard.html";
+                                window.location.href = "dashboardAdmin.html";
                             } else if(res.role === "USER"){
-                                window.location.href = "UserDashBoard.html";
+                                window.location.href = "cashierDashboard.html";
                             }
                         },
                         error: function (ob, textStatus, error) {

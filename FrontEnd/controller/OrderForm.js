@@ -40,10 +40,15 @@ function generateOrderID() {
 
 function loadAllCust() {
     $("#customId").empty();
+    performAuthenticatedRequest();
+    const accessToken = localStorage.getItem('accessToken');
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/customer",
         method: "GET",
         dataType: "json",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function (res) {
             console.log(res);
             for (let i of res.data) {
@@ -53,8 +58,8 @@ function loadAllCust() {
             console.log(res.message);
         },
         error: function (error) {
-            let message = JSON.parse(error.responseText).message;
-            console.log(message);
+            //let message = JSON.parse(error.responseText).message;
+           // console.log(message);
         }
     });
 }
@@ -76,39 +81,13 @@ $("#customId").click(function () {
             $("#custName").val(res.name);
             $("#tPoint").val(res.loyaltyPoints);
             $("#cusLevel").val(res.level);
-
-            /*let points = parseInt(res.loyaltyPoints, 10);
-            setCusLevel(points);*/
         },
         error: function (error) {
-            let message = JSON.parse(error.responseText).message;
-            console.log(message);
+            //let message = JSON.parse(error.responseText).message;
+            //console.log(message);
         }
     })
 });
-
-/*
-function setCusLevel(points) {
-    console.log("Points:", points);
-    let level = updateLoyaltyLevel(points);
-    console.log("Level:", level);
-    document.getElementById("cusLevel").value = level;
-}
-
-function updateLoyaltyLevel(points) {
-    let level;
-    if (points >= 200) {
-        level = "GOLD";
-    } else if (points >= 100) {
-        level = "SILVER";
-    } else if (points >= 50) {
-        level = "BRONZE";
-    } else {
-        level = "NEW";
-    }
-    return level;
-}
-*/
 
 function loadAllIte() {
     $("#itemId").empty();
@@ -130,8 +109,8 @@ function loadAllIte() {
             console.log(res.message);
         },
         error: function (error) {
-            let message = JSON.parse(error.responseText).message;
-            console.log(message);
+           // let message = JSON.parse(error.responseText).message;
+           // console.log(message);
         }
     });
 }
@@ -413,4 +392,21 @@ function clearForm() {
     $("#tblOrder").empty();
 }
 
+function getStockStatus(currentQuantity, originalQuantity) {
+    if (currentQuantity <= 0) {
+        return "not available";
+    } else if (currentQuantity <= 0.5 * originalQuantity) {
+        return "low";
+    } else {
+        return "available";
+    }
+}
 
+$(document).on("change keyup blur", "#qty, #qtyH", function () {
+    let orderQty = parseFloat($("#qty").val()) || 0;
+    let originalQuantity = parseFloat($("#qtyH").val()) || 0;
+    let currentQuantity = originalQuantity - orderQty;
+
+    let stockStatus = getStockStatus(currentQuantity, originalQuantity);
+    $("#status").val(stockStatus);
+});

@@ -1,13 +1,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>view Employee</title>
+    <title>Cashier Dashboard</title>
     <meta name="theme-color" content="red">
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width initial, scale=1.0">
     <link rel="stylesheet" href="../assets/normalize.css">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
 
@@ -25,20 +26,18 @@
                 <div class="logo-name"><span>HELLO</span>SHOP</div>
             </a>
             <ul class="side-menu">
-                <li><b><a href="../page/cashierDashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></b></li>
+                <li class="active"><b><a href="../page/cashierDashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></b></li>
                 <li><b><a href="../page/order.html"><i class='bx bx-user-pin'></i>Orders</a></b></li>
                 <li><b><a href="../page/orderDetail.html"><i class='bx bxs-objects-vertical-bottom'></i>Order Details</a></b></li>
                 <li><b><a href="../page/viewSupplier.html"><i class='bx bx-purchase-tag'></i>Supplier</a></b></li>
                 <li><b><a href="../page/viewItem.html"><i class='bx bx-store-alt'></i>Item</a></b></li>
-                <li class="active"><b><a href="../page/viewEmployee.html"><i class='bx bx-group'></i>Employee</a></b></li>
+                <li><b><a href="../page/viewEmployee.html"><i class='bx bx-group'></i>Employee</a></b></li>
                 <li><b><a href="../page/style.css"><i class='bx bx-cog'></i>Settings</a></b></li>
+
             </ul>
             <ul class="side-menu">
                 <li id="log_out">
-                    <a href="../page/login.html" class="logout">
-                        <i class='bx bx-log-out-circle'></i>
-                        Logout
-                    </a>
+                    <a href="../page/login.html" class="logout"><i class='bx bx-log-out-circle'></i>Logout</a>
                 </li>
             </ul>
         </div>
@@ -67,51 +66,83 @@
                 </a>
             </nav>
             <!-- End of Navbar -->
-
-            <h1>Employee Form </h1>
             <div class="cusF">
+                <ul class="info">
+                    <li>
+                        <i class='bx bxs-calendar-check' ></i>
+                        <span class="text">
+						<h3>1020</h3>
+						<p>New Order</p>
+					</span>
+                    </li>
+                    <li>
+                        <i class='bx bxs-group' ></i>
+                        <span class="text">
+						<h3>2834</h3>
+						<p>Visitors</p>
+					</span>
+                    </li>
+                    <li>
+                        <i class='bx bxs-dollar-circle' ></i>
+                        <span class="text">
+						<h3>$2543</h3>
+						<p>Total Sales</p>
+					</span>
+                    </li>
+                </ul>
 
                 <div class="table-data">
-                    <div class="box-info-tbl">
-
-                        <div class="input-group">
-                            <div class="form-outline" data-mdb-input-init>
-                                <input type="search" id="form1" class="form-control" style="width: 300px" placeholder="Search" />
-                                <label class="form-label" for="form1"></label>
-                            </div>
-                            <button type="button" class="btn btn-primary" style="height:20px; position: relative; height: 38px; right: 40px;" data-mdb-ripple-init>
-                                <i class="fas fa-search"></i>
-                            </button>
+                    <div class="order">
+                        <div class="head">
+                            <h3>Recent Orders</h3>
+                            <i class='bx bx-search' ></i>
+                            <i class='bx bx-filter' ></i>
                         </div>
-
-                        <table class="table table-bordered table-hover ">
-                            <thead class="table-success ">
-                            <tr style="width: 10%">
-                                <th>Employee_code</th>
-                                <th>Employee_Name</th>
-                                <!--<th>Employee Profile Pic</th>-->
-                                <th>Gender</th>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Date Order</th>
                                 <th>Status</th>
-                                <th>Designation</th>
-                                <th>Access_Role</th>
-                                <th>Date_of_Join</th>
-                                <th>Date_of_birth</th>
-                                <th>Attached_Branch</th>
-                                <th>Employee_Address</th>
-                                <th>Contact_No</th>
-                                <th>Inform_emergency</th>
-                                <th>Emergency_Contact</th>
-                                <th>Email</th>
                             </tr>
                             </thead>
-
-                            <tbody id="tblEmployee">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <img src="img/people.png">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/people.png">
+                                    <p>John Doe</p>
+                                </td>
+                                <td>01-10-2021</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
 
                             </tbody>
                         </table>
                     </div>
-                </div>
 
+                    <div class="todo">
+                        <div class="head">
+                            <h3>Todos</h3>
+                            <i class='bx bx-plus' ></i>
+                            <i class='bx bx-filter' ></i>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="input-box" placeholder="Add your text">
+                            <button class="btn1" onclick="addTask()">Add</button>
+                        </div>
+                        <ul id="list-container" class="todo-list">
+
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -122,12 +153,12 @@
 
 </main>
 
-<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
-<script src="../controller/login.js"></script>
-<script src="../controller/viewEmployee.js"></script>
+<script src="../controller/todo.js"></script>
+<script src="../controller/employeeForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
