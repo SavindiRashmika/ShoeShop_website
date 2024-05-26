@@ -1,11 +1,18 @@
 package lk.ijse.gdse66.backEnd.repo;
 
+import lk.ijse.gdse66.backEnd.dto.SaleDTO;
 import lk.ijse.gdse66.backEnd.entity.Sales;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.sql.Date;
+import java.util.List;
 
 public interface OrderRepo extends JpaRepository<Sales, String> {
 
     @Query(value = "SELECT oid FROM sales ORDER BY oid DESC LIMIT 1", nativeQuery = true)
     String getLastIndex();
+
+    @Query(value = "SELECT SUM(total) FROM sales WHERE DATE(purchase_date) = CURDATE()", nativeQuery = true)
+    Double getTodayIncome();
 }

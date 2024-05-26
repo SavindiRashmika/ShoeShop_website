@@ -3,12 +3,10 @@ package lk.ijse.gdse66.backEnd.controller;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDTO;
-import lk.ijse.gdse66.backEnd.dto.SaleDetailsDTO;
 import lk.ijse.gdse66.backEnd.service.OrderService;
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,7 +31,12 @@ public class OrderController {
         return new ResponseUtil("Ok", "Successfully Purchased.!", null);
     }
 
-
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/todayIncome")
+    public ResponseUtil getTodayIncome() {
+        Double todayIncome = orderService.getTodayIncome();
+        return new ResponseUtil("OK", "Successfully Loaded Income.", todayIncome);
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/LoadOrders")

@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
+
 public interface OrderService {
 
     void placeOrder(@RequestBody SaleDTO dto);
     ArrayList<SaleDTO> LoadOrders();
     ArrayList<SaleDetailsDTO> LoadOrderDetails();
-
+    Double getTodayIncome();
     @ResponseBody
     CustomDTO OrderIdGenerate();
+    void returnOrder(@RequestBody SaleDTO dto);
     @ResponseBody
     CustomDTO getSumOrders();
 

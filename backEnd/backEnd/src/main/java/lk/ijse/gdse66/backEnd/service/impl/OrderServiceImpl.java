@@ -2,7 +2,6 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
-import lk.ijse.gdse66.backEnd.dto.CustomerDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDetailsDTO;
 import lk.ijse.gdse66.backEnd.entity.Customer;
@@ -104,9 +103,18 @@ public class OrderServiceImpl implements OrderService {
         }.getType());
     }
 
+    public Double getTodayIncome() {
+        return orderRepo.getTodayIncome();
+    }
+
     @Override
     public CustomDTO OrderIdGenerate() {
         return new CustomDTO(orderRepo.getLastIndex());
+    }
+
+    @Override
+    public void returnOrder(SaleDTO dto) {
+
     }
 
     @Override

@@ -21,18 +21,14 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signIn")
-    public ResponseEntity<JwtAuthResponse> signIn(
-            @RequestBody SignInRequest signInRequest){
-        return ResponseEntity.ok(
-                authenticationService.signIn(signInRequest));
+    public ResponseEntity<JwtAuthResponse> signIn(@RequestBody SignInRequest signInRequest){
+        return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<JwtAuthResponse> signUp(
-            @RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<JwtAuthResponse> signUp(@RequestBody SignUpRequest signUpRequest){
         System.out.println(signUpRequest);
-        return ResponseEntity.ok(
-                authenticationService.signUp(signUpRequest));
+        return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
     }
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/search/{id}")
