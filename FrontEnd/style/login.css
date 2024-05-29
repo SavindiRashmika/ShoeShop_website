@@ -105,3 +105,13 @@ img{
     opacity: 1;
 }
 /*------button end-------*/
+
+.greeting{
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    color: var(--dark);
+}

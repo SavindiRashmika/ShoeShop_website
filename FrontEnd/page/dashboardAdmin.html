@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/admin.css">
+  <link rel="stylesheet" href="../style/login.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
 
@@ -31,6 +32,7 @@
         <li><b><a href="../page/item.html"><i class='bx bxs-objects-vertical-bottom'></i>Stock</a></b></li>
         <li><b><a href="../page/supplier.html"><i class='bx bx-purchase-tag'></i>Supplier</a></b></li>
         <li><b><a href="../page/supplierOrder.html"><i class='bx bx-store-alt'></i>Orders</a></b></li>
+        <li><b><a href="../page/return.html"><i class='bx bx-recycle'></i>Return</a></b></li>
         <li><b><a href="../page/style.css"><i class='bx bx-group'></i>Users</a></b></li>
         <li><b><a href="../page/style.css"><i class='bx bx-cog'></i>Settings</a></b></li>
 
@@ -69,7 +71,48 @@
         </a>
       </nav>
       <!-- End of Navbar -->
+
       <div class="cusF">
+        <!--<div class="greeting">
+          <h2 id="greeting"> </h2>
+        </div>
+        <div class="greeting">
+          <form action="#">
+            <div class="form-input"  onload="startTime()" >
+              <div id="MyClockDisplay" class="clock">
+                <div id="clockDate">
+                  <div class="clockDate-wrapper">
+                    <div id="clock"></div>
+                    <div id="date"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>-->
+
+        <ul class="info">
+          <li>
+            <i class='bx bx-user-circle'></i>
+            <h3 id="greeting"> </h3>
+          </li>
+          <li>
+            <i class='bx bx-time-five'></i>
+            <form action="#">
+              <div class="form-input"  onload="startTime()" >
+                <div id="MyClockDisplay" class="clock">
+                  <div id="clockDate">
+                    <div class="clockDate-wrapper">
+                      <div id="clock"></div>
+                      <div id="date"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </li>
+        </ul>
+
         <ul class="info">
           <li>
             <i class='bx bxs-calendar-check' ></i>
@@ -88,8 +131,8 @@
           <li>
             <i class='bx bxs-dollar-circle' ></i>
             <span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<span>Rs:</span><h3 id="totalPayment" ></h3>
+						<p>Today Income</p>
 					</span>
           </li>
         </ul>
@@ -156,12 +199,14 @@
 
 </main>
 
+<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
+<script src="../controller/login.js"></script>
+<script src="../controller/return.js"></script>
 <script src="../controller/todo.js"></script>
 <script src="../controller/employeeForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

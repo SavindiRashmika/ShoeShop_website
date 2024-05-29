@@ -95,7 +95,18 @@ function loadAllCus() {
 
                 let addressColumn = ad1 + ", " + ad2 + ", " + ad3;
 
-                let row = "<tr><td>" + cusId + "</td><td>" + name + "</td><td>" + addressColumn + "</td><td>" + gender + "</td><td>" + joinDate + "</td><td>" + level + "</td><td>" + points + "</td><td>" + dob + "</td><td>" + contact + "</td><td>" + time + "</td><td>" + email + "</td></tr>";
+                let row = "<tr><td>" + cusId + "</td>" +
+                    "<td>" + name + "</td>" +
+                    "<td>" + addressColumn + "</td>" +
+                    "<td>" + gender + "</td>" +
+                    "<td>" + joinDate + "</td>" +
+                    "<td>" + level + "</td>" +
+                    "<td>" + points + "</td>" +
+                    "<td>" + dob + "</td>" +
+                    "<td>" + contact + "</td>" +
+                    "<td>" + time + "</td>" +
+                    "<td>" + email + "</td>" +
+                    "</tr>";
                 $("#tblCustomer").append(row);
 
             }
@@ -323,23 +334,4 @@ $("#form1").on("keypress", function (event) {
         });
     }
 });
-/*
-function updateLoyaltyLevel(points) {
-    let level;
-    if (points >= 200) {
-        level = "GOLD";
-    } else if (points >= 100) {
-        level = "SILVER";
-    } else if (points >= 50) {
-        level = "BRONZE";
-    } else {
-        level = "NEW";
-    }
-    return level;
-}
 
-document.getElementById("loyaltyPoints").addEventListener("input", function () {
-    let points = parseInt(this.value, 10) || 0;
-    let level = updateLoyaltyLevel(points);
-    document.getElementById("level").value = level;
-});*/

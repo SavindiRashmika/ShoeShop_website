@@ -155,6 +155,7 @@ $("#itemName").on("keypress", function (event) {
             success: function (res) {
                 console.log(res);
                 $("#itemId").val(res.code);
+                $("#itemName").val(res.name);
                 $("#qprice").val(res.salePrice);
                 $("#qtyH").val(res.qty);
             },
@@ -238,7 +239,7 @@ let discount = 0;
 let amount = 0;
 function calcTotal(amountt) {
     amount += amountt;
-    $("#amount").val(amount);
+    $("#amount").val(amount.toFixed(2));
 }
 
 function reduceQty(orderQty) {
@@ -263,7 +264,7 @@ function manageTotal(preTotal, nowTotal) {
     amount -= preTotal;
     amount += nowTotal;
 
-    $("#amount").val(amount);
+    $("#amount").val(amount.toFixed(2));
 }
 
 $("#tblOrder").empty();
@@ -315,7 +316,7 @@ $("#placeBtn").click(function () {
             oid: $("#oid").val(),
             itemCode: $(row).find('td:eq(0)').text(),
             qty: $(row).find('td:eq(3)').text(),
-            unitPrice: $(row).find('td:eq(4)').text()
+            unitPrice: $(row).find('td:eq(2)').text()
         };
         orderDetails.push(detailOb);
     });
@@ -329,7 +330,7 @@ $("#placeBtn").click(function () {
     var customerCode = $("#customId").val();
     var customerName = $("#custName").val();
     var totalPoints = $("#tPoint").val();
-    var cashier = $("#empName").val();
+    var cashier = $("#cashierName").val();
     var payment = $("#payM").val();
     var total = $("#total").val();
 

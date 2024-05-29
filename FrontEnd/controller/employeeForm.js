@@ -350,7 +350,7 @@ $("#form1").on("keypress", function (event) {
 
                     let row = "<tr><td>" + empId + "</td><td>" + name + "</td><td>" + gender + "</td><td>" + status + "</td><td>" + designation + "</td><td>" + role + "</td><td>" + joinDate + "</td><td>" + dob + "</td><td>" + branch + "</td><td>" + addressColumn + "</td><td>" + contact + "</td><td>" + person + "</td><td>" + eContact + "</td><td>" + email + "</td></tr>";
                     $("#tblEmployee").append(row);
-                    blindClickEventsS();
+                    blindClickEventsE();
                 }
             },
             error: function (error) {

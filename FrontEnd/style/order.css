@@ -25,6 +25,18 @@ main .content .cusF #info>li{
     margin-left: 18%;
 }
 
+#cardBtn{
+    width: 250px;
+    height: 40px;
+    color: #F9F9F9;
+    background: var(--orange);
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
+    margin: 2% 0 3% 18%;
+}
+
 #BTN{
 
     height: 40px;

@@ -34,7 +34,7 @@ main .content .info li:nth-child(3) .bx {
     background: var(--light-orange);
     color: var(--orange);
 }
-main .content .info li .text h3 {
+main .content .info li .text h3 , #clock{
     font-size: 24px;
     font-weight: 600;
     color: var(--dark);

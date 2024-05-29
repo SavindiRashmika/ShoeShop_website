@@ -1,86 +1,91 @@
 
 
 $("#btnSingUp").click(function() {
+    let value = {
+        email: $("#upUser_Name").val(),
+        password: $("#upPassword").val(),
+        role: $('#role_Type').val()
+    }
+    console.log(value);
+    $.ajax({
+        url: "http://localhost:8080/backEnd/api/v1/auth/signup",
+        method: "POST",
+        data: JSON.stringify(value),
+        contentType: "application/json",
+        success: function (res) {
+            localStorage.setItem('accessToken', res.token);
+            Swal.fire({
+                icon: "success",
+                title: "user added successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        },
+        error: function (ob, textStatus, error) {
+            alert("Error User Not Added");
+        }
+    });
+});
 
-            let value = {
-                email: $("#upUser_Name").val(),
-                password: $("#upPassword").val(),
-                role: $('#role_Type').val()
-            }
-            console.log(value);
+$("#btnLogin").click(function() {
+    let value = {
+        email: $("#user_Name").val(),
+        password: $("#password").val(),
+    }
+    console.log(value);
+    $.ajax({
+        url: "http://localhost:8080/backEnd/api/v1/auth/signIn",
+        method: "POST",
+        data: JSON.stringify(value),
+        contentType: "application/json",
+        success: function (res) {
+            localStorage.setItem('email', value.email);
+            localStorage.setItem('password', value.password);
+            localStorage.setItem('accessToken', res.token);
+            console.log("User SignIn Successfully "+res.token);
+            performAuthenticatedRequest();
+            const accessToken = localStorage.getItem('accessToken');
+
             $.ajax({
-                url: "http://localhost:8080/backEnd/api/v1/auth/signup",
-                method: "POST",
-                data: JSON.stringify(value),
-                contentType: "application/json",
+                url: "http://localhost:8080/backEnd/api/v1/auth/search/" + value.email,
+                method: "GET",
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                },
+                dataType: "json",
                 success: function (res) {
-                    localStorage.setItem('accessToken', res.token);
-                    Swal.fire({
-                        icon: "success",
-                        title: "user added successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    localStorage.setItem('role', res.role);
+                    localStorage.setItem('cashier', value.email);
+                    if (res.role === "ADMIN") {
+                        window.location.href = "dashboardAdmin.html";
+                    } else if(res.role === "USER"){
+                        window.location.href = "cashierDashboard.html";
+                    }
                 },
                 error: function (ob, textStatus, error) {
-                    alert("Error User Not Added");
+                    // swal("Error","Error Sign in", "error");
                 }
             });
 
-        });
-        $("#btnLogin").click(function() {
-            let value = {
-                email: $("#user_Name").val(),
-                password: $("#password").val(),
-            }
-            console.log(value);
-            $.ajax({
-                url: "http://localhost:8080/backEnd/api/v1/auth/signIn",
-                method: "POST",
-                data: JSON.stringify(value),
-                contentType: "application/json",
-                success: function (res) {
-                    localStorage.setItem('email', value.email);
-                    localStorage.setItem('password', value.password);
-                    localStorage.setItem('accessToken', res.token);
-                    console.log("User SignIn Successfully "+res.token);
-                    performAuthenticatedRequest();
-                    const accessToken = localStorage.getItem('accessToken');
+        },
+        error: function (ob, textStatus, error) {
+            swal("Error", "Error Sign in", "error");
+        }
+    });
+ });
 
-                    $.ajax({
-                        url: "http://localhost:8080/backEnd/api/v1/auth/search/" + value.email,
-                        method: "GET",
-                        headers: {
-                            'Authorization': 'Bearer ' + accessToken
-                        },
-                        dataType: "json",
-                        success: function (res, textStatus, xhr) {
-                            localStorage.setItem('role', res.role);
-                            localStorage.setItem('cashier', value.email);
-                            if (res.role === "ADMIN") {
-                                window.location.href = "dashboardAdmin.html";
-                            } else if(res.role === "USER"){
-                                window.location.href = "cashierDashboard.html";
-                            }
-                        },
-                        error: function (ob, textStatus, error) {
-                            // swal("Error","Error Sign in", "error");
-                        }
-                    });
+$(document).ready(function() {
+    var username = localStorage.getItem('email');
+    $("#greeting").text("Welcome, " + username);
+    $("#cashierName").val(username);
+});
 
-                },
-                error: function (ob, textStatus, error) {
-                     swal("Error", "Error Sign in", "error");
-                }
-            });
-        });
-
-        function isTokenExpired(token) {
+function isTokenExpired(token) {
             const jwtPayload = JSON.parse(atob(token.split('.')[1]));
             const expiryTime = jwtPayload.exp * 1000;
             return Date.now() >= expiryTime;
         }
-        function performAuthenticatedRequest() {
+function performAuthenticatedRequest() {
             const accessToken = localStorage.getItem('accessToken');
             if (!accessToken || isTokenExpired(accessToken)) {
                 $.ajax({
