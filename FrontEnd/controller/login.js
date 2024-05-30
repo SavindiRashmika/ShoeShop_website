@@ -28,11 +28,23 @@ $("#btnSingUp").click(function() {
 });
 
 $("#btnLogin").click(function() {
-    let value = {
-        email: $("#user_Name").val(),
-        password: $("#password").val(),
+    let email = $("#user_Name").val();
+    let password = $("#password").val();
+
+    if(!email || !password){
+        Swal.fire({
+            icon: "error",
+            title: "UserName or Password must not be empty",
+            showConfirmButton: true
+        });
+        return;
     }
-    console.log(value);
+
+    let value = {
+        email: email,
+        password: password,
+    }
+    /*console.log(value);*/
     $.ajax({
         url: "http://localhost:8080/backEnd/api/v1/auth/signIn",
         method: "POST",
@@ -63,13 +75,18 @@ $("#btnLogin").click(function() {
                     }
                 },
                 error: function (ob, textStatus, error) {
-                    // swal("Error","Error Sign in", "error");
+                     swal("Error","Error Sign in", "error");
                 }
             });
 
         },
         error: function (ob, textStatus, error) {
-            swal("Error", "Error Sign in", "error");
+            Swal.fire({
+            icon: "error",
+            title: "Error Sign in, check the userName and password ",
+            showConfirmButton: true
+        });
+
         }
     });
  });

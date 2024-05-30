@@ -11,6 +11,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
   <link rel="stylesheet" href="../style/order.css">
   <link rel="stylesheet" href="../style/admin.css">
+  <link rel="stylesheet" href="../style/popup.css">
+
 
 </head>
 <body>
@@ -50,6 +52,12 @@
       <nav>
         <i class='bx bx-menu' ></i>
         <form action="#">
+          <div class="form-input">
+            <input type="search" id="search_Id" placeholder="Search...">
+            <button type="button" class="search-btn"><i class='bx bx-search' ></i></button>
+          </div>
+        </form>
+        <!--<form action="#">
           <div class="form-input"  onload="startTime()" >
             <div id="MyClockDisplay" class="clock">
               <div id="clockDate">
@@ -60,7 +68,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </form>-->
 
         <input type="checkbox" id="theme-toggle" hidden>
         <label for="theme-toggle" class="theme-toggle"></label>
@@ -104,9 +112,10 @@
             <div class="row mb-3">
               <div class="col">
                 <label for="itemId" class="form-label"> Item code</label>
-                <select id="itemId" name="code" class="form-select" aria-label="Default select example" >
+                <input class="form-control" id="itemId" name="code" aria-label="Default select example">
+                <!--<select id="itemId" name="code" class="form-select" aria-label="Default select example" >
                   <option  value="ITEM_ID"></option>
-                </select>
+                </select>-->
               </div>
               <div class="col">
                 <label for="itemName" class="form-label">Item name</label>
@@ -224,9 +233,58 @@
               </div>
             </div>
 
-            <a href="../page/payment.html">
+
             <button type="button" id="cardBtn">Card Payment</button>
-            </a>
+
+            <div id="myPopup" class="popup">
+              <div class="popup-content">
+                <button id="closePopup"><i class='bx bx-x'></i></button>
+                <h4 class="mt-8 mb-6">Credit Card Info</h4>
+                <div class="todo-o">
+
+                  <div class=" row">
+                    <img style="padding: 20px; height: 100px" class="img-responsive cc-img" src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png">
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <label>Card Number</label>
+                    <div class="input-group">
+                      <input type="tel" class="form-control" placeholder="Valid Card Number" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-xs-7 col-md-7">
+                      <div class="form-group">
+                        <label><span class="hidden-xs">Expiration</span><span class="visible-xs-inline">EXP</span> Date</label>
+                        <input type="tel" class="form-control" placeholder="MM / YY" />
+                      </div>
+                    </div>
+                    <div class="col-xs-5 col-md-5 pull-right">
+                      <div class="form-group">
+                        <label>CV Code</label>
+                        <input type="tel" class="form-control" placeholder="CVC" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Card Owner</label>
+                        <input type="text" class="form-control" placeholder="Card Owner Names" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="button" id="placeBtnC">Place Order</button>
+
+
+                </div>
+              </div>
+            </div>
 
 
             <button type="button" id="placeBtn">Place Order</button>
@@ -301,6 +359,7 @@
 <script src="../controller/login.js"></script>
 <script src="../controller/OrderForm.js"></script>
 <script src="../controller/customer.js"></script>
+<script src="../controller/popup.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

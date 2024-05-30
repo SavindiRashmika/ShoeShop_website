@@ -13,7 +13,7 @@ main .content .cusF #info>li{
     border-radius: 20px;
 }
 
-#placeBtn{
+#placeBtn, #placeBtnC{
     width: 250px;
     height: 40px;
     color: #F9F9F9;

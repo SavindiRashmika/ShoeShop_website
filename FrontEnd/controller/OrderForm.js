@@ -1,6 +1,6 @@
 
 loadAllCust();
-loadAllIte();
+
 
 $(document).ready(function() {
     generateOrderID();
@@ -115,25 +115,6 @@ function loadAllIte() {
     });
 }
 
-/*$("#itemId").click(function () {
-    var search = $("#itemId").val();
-    $.ajax({
-        url: "http://localhost:8080/backEnd/api/v1/item/searchI?code="+ search,
-        method: "GET",
-        contentType: "application/json",
-        dataType: "json",
-        success: function (res) {
-            console.log(res);
-            $("#itemName").val(res.name);
-            $("#qprice").val(res.salePrice);
-            $("#qtyH").val(res.qty);
-        },
-        error: function (error) {
-            let message = JSON.parse(error.responseText).message;
-            console.log(message);
-        }
-    })
-});*/
 
 $("#itemName").on("keypress", function (event) {
     if (event.which === 13) {
@@ -309,7 +290,15 @@ $(document).on("change keyup blur", "#cash", function () {
 
 generateOrderID();
 
+
 $("#placeBtn").click(function () {
+    placeOrder();
+});
+$("#placeBtnC").click(function () {
+    placeOrder();
+});
+
+function placeOrder(){
     var orderDetails = [];
     $("#tblOrder tr").each(function (i, row) {
         var detailOb = {
@@ -385,7 +374,7 @@ $("#placeBtn").click(function () {
 
     clearForm();
     $("#tblOrder").empty();
-});
+}
 
 
 function clearForm() {
