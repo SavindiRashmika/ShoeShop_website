@@ -15,10 +15,11 @@ public interface OrderService {
     void placeOrder(@RequestBody SaleDTO dto);
     ArrayList<SaleDTO> LoadOrders();
     ArrayList<SaleDetailsDTO> LoadOrderDetails();
-    Double getTodayIncome();
+    //Double getTodayIncome();
     @ResponseBody
     CustomDTO OrderIdGenerate();
     void returnOrder(@RequestBody SaleDTO dto);
+    SaleDTO searchOrder(String code);
     @ResponseBody
     CustomDTO getSumOrders();
 

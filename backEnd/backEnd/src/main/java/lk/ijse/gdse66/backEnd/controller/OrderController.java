@@ -31,11 +31,18 @@ public class OrderController {
         return new ResponseUtil("Ok", "Successfully Purchased.!", null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+    /*@ResponseStatus(HttpStatus.CREATED)
     @GetMapping(path = "/todayIncome")
     public ResponseUtil getTodayIncome() {
         Double todayIncome = orderService.getTodayIncome();
         return new ResponseUtil("OK", "Successfully Loaded Income.", todayIncome);
+    }*/
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(path = "/returnOrder")
+    public ResponseUtil returnOrder(@RequestBody SaleDTO dto) {
+        orderService.returnOrder(dto);
+        return new ResponseUtil("Ok", "Successfully Returned Order.!", null);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -48,5 +55,12 @@ public class OrderController {
     @GetMapping(path = "/LoadOrderDetails")
     public ResponseUtil LoadOrderDetails() {
         return new ResponseUtil("OK", "Successfully Loaded. :", orderService.LoadOrderDetails());
+    }
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/searchOrder")
+    public SaleDTO searchOrder(String code){
+        return orderService.searchOrder(code);
     }
 }

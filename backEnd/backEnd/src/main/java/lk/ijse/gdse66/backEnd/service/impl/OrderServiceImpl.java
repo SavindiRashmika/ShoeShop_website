@@ -1,18 +1,13 @@
 package lk.ijse.gdse66.backEnd.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import lk.ijse.gdse66.backEnd.dto.AdminDTO;
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDetailsDTO;
-import lk.ijse.gdse66.backEnd.entity.Customer;
-import lk.ijse.gdse66.backEnd.entity.Item;
-import lk.ijse.gdse66.backEnd.entity.SaleDetails;
-import lk.ijse.gdse66.backEnd.entity.Sales;
+import lk.ijse.gdse66.backEnd.entity.*;
 import lk.ijse.gdse66.backEnd.enums.Level;
-import lk.ijse.gdse66.backEnd.repo.CustomerRepo;
-import lk.ijse.gdse66.backEnd.repo.ItemRepo;
-import lk.ijse.gdse66.backEnd.repo.OrderDetailsRepo;
-import lk.ijse.gdse66.backEnd.repo.OrderRepo;
+import lk.ijse.gdse66.backEnd.repo.*;
 import lk.ijse.gdse66.backEnd.service.OrderService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -20,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -42,6 +40,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CustomerRepo customerRepo;
 
+    @Autowired
+    private AdminRepo adminRepo;
 
 
     @Override
@@ -103,18 +103,103 @@ public class OrderServiceImpl implements OrderService {
         }.getType());
     }
 
-    public Double getTodayIncome() {
+    /*public Double getTodayIncome() {
         return orderRepo.getTodayIncome();
-    }
+    }*/
 
     @Override
     public CustomDTO OrderIdGenerate() {
         return new CustomDTO(orderRepo.getLastIndex());
     }
 
+
+
     @Override
     public void returnOrder(SaleDTO dto) {
+        Sales sales = orderRepo.findById(dto.getOid())
+                .orElseThrow(() -> new RuntimeException("Order with ID " + dto.getOid() + " not found."));
 
+        String purchaseDateS = sales.getPurchaseDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime purchaseDate;
+        try {
+            purchaseDate = LocalDateTime.parse(purchaseDateS, formatter);
+        } catch (DateTimeParseException e) {
+            throw new RuntimeException("Invalid purchase date format.");
+        }
+
+        // Check if the purchase date is within the last 3 days
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime threeDaysAgo = now.minusDays(3);
+        if (purchaseDate.isBefore(threeDaysAgo) || purchaseDate.isAfter(now)) {
+            throw new RuntimeException("Items purchased more than 3 days ago are not eligible for refund.");
+        }
+
+        double returnTotal = 0;
+
+        for (SaleDetailsDTO saleDetailsDTO : dto.getSaleDetails()) {
+            Item item = itemRepo.findById(saleDetailsDTO.getItemCode())
+                    .orElseThrow(() -> new RuntimeException("Item with code " + saleDetailsDTO.getItemCode() + " not found."));
+
+            // Validate return quantity
+            SaleDetails saleDetail = sales.getSaleDetails().stream()
+                    .filter(sd -> sd.getItemCode().equals(saleDetailsDTO.getItemCode()))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Sale detail with item code " + saleDetailsDTO.getItemCode() + " not found."));
+
+            if (saleDetailsDTO.getQty() > saleDetail.getQty()) {
+                throw new RuntimeException("Return quantity exceeds purchased quantity.");
+            }
+
+            // Update item quantity in inventory
+            item.setQty(item.getQty() + saleDetailsDTO.getQty());
+            itemRepo.save(item);
+
+            returnTotal += saleDetailsDTO.getQty() * item.getSalePrice();
+
+            saleDetail.setQty(saleDetail.getQty() - saleDetailsDTO.getQty());
+            if (saleDetail.getQty() <= 0) {
+                sales.getSaleDetails().remove(saleDetail);
+                orderDetailsRepo.delete(saleDetail);
+            } else {
+                orderDetailsRepo.save(saleDetail);
+            }
+        }
+
+        double orderTotal = sales.getTotal();
+
+        orderTotal -= returnTotal;
+        sales.setTotal(orderTotal);
+        if (sales.getSaleDetails().isEmpty()) {
+            orderRepo.delete(sales);
+        } else {
+            orderRepo.save(sales);
+        }
+
+
+        if (returnTotal >= 800) {
+            String customerCode = dto.getCustomer().getCode();
+            Customer customer = customerRepo.findById(customerCode)
+                    .orElseThrow(() -> new RuntimeException("Customer with ID " + customerCode + " not found."));
+            int currentPoints = customer.getLoyaltyPoints();
+            int newPoints = Math.max(0, currentPoints - 1);
+            customer.setLoyaltyPoints(newPoints);
+            updateLoyaltyLevel(customer);
+            customerRepo.save(customer);
+        }
+
+        double todayIncome = adminRepo.getTodayIncome() - returnTotal;
+        adminRepo.updateTodayIncome(todayIncome);
+        System.out.println(todayIncome);
+    }
+
+
+    @Override
+    public SaleDTO searchOrder(String code) {
+        if (!orderRepo.existsById(code)) {
+            throw new RuntimeException("Wrong ID. Please enter Valid id..!");
+        }
+        return mapper.map(orderRepo.findById(code).get(), SaleDTO.class);
     }
 
     @Override
