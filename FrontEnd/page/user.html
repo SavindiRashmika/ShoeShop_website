@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Return</title>
+    <title>User</title>
     <meta name="theme-color" content="red">
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../style/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
-    <link rel="stylesheet" href="../style/login.css">
 
 </head>
 <body>
@@ -27,12 +26,12 @@
             </a>
             <ul class="side-menu">
                 <li><b><a href="../page/dashboardAdmin.html"><i class='bx bxs-dashboard'></i>Dashboard</a></b></li>
-                <li><b><a href="../page/employee.html"><i class='bx bx-user-pin'></i>Employee</a></b></li>
+                <li class="active"><b><a href="../page/employee.html"><i class='bx bx-user-pin'></i>Employee</a></b></li>
                 <li><b><a href="../page/item.html"><i class='bx bxs-objects-vertical-bottom'></i>Stock</a></b></li>
                 <li><b><a href="../page/supplier.html"><i class='bx bx-purchase-tag'></i>Supplier</a></b></li>
                 <li><b><a href="../page/todayOrder.html"><i class='bx bx-store-alt'></i>Orders</a></b></li>
-                <li class="active"><b><a href="../page/return.html"><i class='bx bx-store-alt'></i>Return</a></b></li>
-                <li><b><a href="../page/style.css"><i class='bx bx-group'></i>Users</a></b></li>
+                <li><b><a href="../page/return.html"><i class='bx bx-recycle'></i>Return</a></b></li>
+                <li><b><a href="../page/user.html"><i class='bx bx-group'></i>Users</a></b></li>
                 <li><b><a href="../page/style.css"><i class='bx bx-cog'></i>Settings</a></b></li>
 
             </ul>
@@ -71,79 +70,33 @@
             </nav>
             <!-- End of Navbar -->
 
-            <h1>Return Form </h1>
+            <h1>User Form </h1>
             <div class="cusF">
+
                 <div class="box-info" style="width: 600px">
                     <form id="rForm">
                         <div class="row g-5 mb-4">
                             <div class="col">
-                                <label for="rCode" class="form-label"> Order Id</label>
-                                <input id="rCode" type="text" class="form-control">
+                                <label for="uName" class="form-label"> User Name</label>
+                                <input id="uName" name="name" type="text" class="form-control">
                             </div>
+
                             <div class="col">
-                                <label for="rDate" class="form-label">Return Date</label>
-                                <input id="rDate" type="text" class="form-control">
+                                <label for="uRole" class="form-label">Role</label>
+                                <input id="uRole" type="text" class="form-control">
                             </div>
                         </div>
 
-                        <div class="row g-5 mb-4">
-                            <div class="col">
-                                <label for="cCode" class="form-label"> Customer code</label>
-                                <input id="cCode" type="text" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="cName" class="form-label">Customer Name</label>
-                                <input id="cName" type="text" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row g-5 mb-4">
-                            <div class="col">
-                                <label for="rId" class="form-label"> Item code</label>
-                                <input id="rId" type="text" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="rQty" class="form-label">Return qty:</label>
-                                <input id="rQty" type="text" class="form-control">
-                            </div>
-                           <!-- <div class="col">
-                                <label for="rPrice" class="form-label">unit Price:</label>
-                                <input id="rPrice" type="text" class="form-control">
-                            </div>-->
-                        </div>
-
-                        <div class="row g-5 mb-5">
-                            <div class="col">
-                                <label for="textarea" class="form-label">Reason for Return:</label>
-                                <textarea id="textarea" type="text" class="form-control"></textarea>
-                            </div>
-                        </div>
 
                         <div class="button">
-                            <button type="button" id="returnBtn" class="animated-button save"><span> return</span><span class="saveS"></span></button>
+                            <button type="button" id="uDelete" class="animated-button save"><span> Delete</span><span class="saveS"></span></button>
+                            <a href="register.html">
+                            <button type="button" id="btnDelete" class="animated-button delete"><span>SingUp</span><span class="deleteS"></span></button>
+                            </a>
                         </div>
                     </form>
                 </div>
-
-                <ul class="info">
-                    <li>
-                        <i class='bx bxs-dollar-circle' ></i>
-                        <span class="text">
-						<span>Rs:</span><h3 id="totalPayment" ></h3>
-						<p>Today Income</p>
-					</span>
-                    </li>
-                </ul>
             </div>
-            <!--<div class="cusF">
-                <div class="box-info" style="width: 600px">
-                            <div class="col">
-                                <label for="totalPayment" class="form-label">Today Income:</label>
-                                <input id="totalPayment" type="text" class="form-control">
-                            </div>
-                    </form>
-                </div>
-            </div>-->
 
         </div>
 
@@ -154,8 +107,9 @@
 </main>
 <script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="../controller/login.js"></script>
-<script src="../controller/return.js"></script>
+<script src="../controller/user.js"></script>
 <script src="../controller/validation/validation.js"></script>
+<script src="../controller/employeeForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>
 <!--<script src="../assets/bootstrap/js/bootstrap.min.js"></script>-->

@@ -385,7 +385,7 @@ function clearForm() {
 function getStockStatus(currentQuantity, originalQuantity) {
     if (currentQuantity <= 0) {
         return "not available";
-    } else if (currentQuantity <= 0.5 * originalQuantity) {
+    } else if (currentQuantity <= 10) {
         return "low";
     } else {
         return "available";

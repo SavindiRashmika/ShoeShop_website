@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/admin.css">
+    <link rel="stylesheet" href="../style/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" type="image/x-icon" href="../logo3.png">
+
 
 </head>
 <body>
@@ -72,7 +74,7 @@
                 <ul class="info">
                     <li>
                         <i class='bx bx-user-circle'></i>
-                        <h3 id="greeting"> </h3>
+                        <h3 id="greeting" class="greeting"> </h3>
                     </li>
                     <li>
                         <i class='bx bx-time-five'></i>
@@ -95,61 +97,46 @@
                     <li>
                         <i class='bx bxs-calendar-check' ></i>
                         <span class="text">
-						<h3>1020</h3>
-						<p>New Order</p>
+						<h3 id="cusCount"></h3>
+						<p>Customer Count</p>
 					</span>
                     </li>
                     <li>
                         <i class='bx bxs-group' ></i>
                         <span class="text">
-						<h3>2834</h3>
-						<p>Visitors</p>
+						<h3 id="empCount"></h3>
+						<p>Employee Count</p>
 					</span>
                     </li>
                     <li>
                         <i class='bx bxs-dollar-circle' ></i>
                         <span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<h3 id="totalPayment"></h3>
+						<p>Total Income</p>
 					</span>
                     </li>
                 </ul>
 
                 <div class="table-data">
-                    <div class="order">
-                        <div class="head">
-                            <h3>Recent Orders</h3>
-                            <i class='bx bx-search' ></i>
-                            <i class='bx bx-filter' ></i>
-                        </div>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Date Order</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
+                    <div class="order" style="background: none">
+                        <div id="parent">
 
-                            </tbody>
-                        </table>
+                            <section class="row" style="width: 600px; gap: 10px">
+                                <div class="col cashier">
+                                    <i class='bx bxs-objects-vertical-bottom' ></i>
+                                    <p>Item Count</p>
+                                    <h2 id="itemCount"></h2>
+                                </div>
+                                <div class="col cashier">
+                                    <i class='bx bx-list-plus'></i>
+                                    <p>All Item Qty</p>
+                                    <h2 id="itemQty"></h2>
+                                </div>
+                            </section>
+
+                            <img id="shoe" src="../img/other/shoebrand.jpg" height="100" width="2000"/>
+
+                        </div>
                     </div>
 
                     <div class="todo">
@@ -180,6 +167,8 @@
 <script src="../assets/jQuery/jquery-3.6.1.min.js"></script>
 <script src="../controller/todo.js"></script>
 <script src="../controller/login.js"></script>
+<script src="../controller/return.js"></script>
+<script src="../controller/CashierDashboard.js"></script>
 <script src="../controller/employeeForm.js"></script>
 <script src="../controller/customer.js"></script>
 <script src="../assets/font-awsome/js/all.min.js"></script>

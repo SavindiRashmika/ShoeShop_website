@@ -39,6 +39,11 @@ main .content .info li .text h3 , #clock{
     font-weight: 600;
     color: var(--dark);
 }
+
+#date{
+    color: var(--dark);
+}
+
 main .content .info li .text p {
     color: var(--dark);
 }
@@ -115,14 +120,16 @@ main .content .table-data .order table tr td .status {
     border-radius: 20px;
     font-weight: 700;
 }
-main .content .table-data .order table tr td .status.completed {
+main .content .table-data .order #parent .cashier:nth-child(1) .bx{
     background: var(--primary);
+    color: var(--light);
 }
-main .content .table-data .order table tr td .status.process {
-    background: var(--warning);
+main .content .table-data .order #parent .cashier:nth-child(2) .bx{
+    background: var(--orange);
+    color: var(--light);
 }
 main .content .table-data .order table tr td .status.pending {
-    background: var(--orange);
+    background: var(--warning);
 }
 
 
@@ -187,4 +194,45 @@ main .content .table-data .todo ul li::before{
     background-position: center;
     top: 12px;
     left: 8px;
+}
+
+#parent {
+    height: 100%;
+    display: grid;
+   /* grid-template-columns: repeat(2, 1fr);*/
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+#parent .cashier{
+    background-color: var(--light);
+}
+
+#shoe{
+    width: 100%;
+    height: 150px;
+}
+
+#parent .cashier .bx {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cashier{
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+}
+
+main .content .table-data .order #parent #dash:nth-child(1) .bx{
+    background: var(--other);
+    color: #eee;
 }

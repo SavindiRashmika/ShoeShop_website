@@ -273,7 +273,7 @@ function profitMargin() {
 }
 
 
-$("#buyPrice").on("input", function() {
+$("#salePrice").on("input", function() {
     profitMargin();
 });
 
