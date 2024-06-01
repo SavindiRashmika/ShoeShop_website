@@ -17,6 +17,6 @@ public interface CustomerService {
 
     @ResponseBody
     CustomDTO customerIdGenerate();
-    CustomerDTO getSumCustomer();
+    CustomDTO getSumCustomer();
 
 }

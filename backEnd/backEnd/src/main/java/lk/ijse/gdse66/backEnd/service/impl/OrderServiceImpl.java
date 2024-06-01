@@ -1,10 +1,7 @@
 package lk.ijse.gdse66.backEnd.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import lk.ijse.gdse66.backEnd.dto.AdminDTO;
-import lk.ijse.gdse66.backEnd.dto.CustomDTO;
-import lk.ijse.gdse66.backEnd.dto.SaleDTO;
-import lk.ijse.gdse66.backEnd.dto.SaleDetailsDTO;
+import lk.ijse.gdse66.backEnd.dto.*;
 import lk.ijse.gdse66.backEnd.entity.*;
 import lk.ijse.gdse66.backEnd.enums.Level;
 import lk.ijse.gdse66.backEnd.repo.*;
@@ -15,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -103,9 +102,21 @@ public class OrderServiceImpl implements OrderService {
         }.getType());
     }
 
-    /*public Double getTodayIncome() {
-        return orderRepo.getTodayIncome();
-    }*/
+    @Override
+    public int getTodayOrders() {
+        return orderRepo.getTodayOrders();
+    }
+
+    @Override
+    public int getDayOrderQty() {
+        return orderDetailsRepo.getDayOrderQty();
+    }
+
+    @Override
+    public List<SaleDTO> findAllSalesForToday() {
+        return mapper.map(orderRepo.findAllSalesForToday(), new TypeToken<List<SaleDTO>>() {
+        }.getType());
+    }
 
     @Override
     public CustomDTO OrderIdGenerate() {
@@ -131,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         // Check if the purchase date is within the last 3 days
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime threeDaysAgo = now.minusDays(3);
-        if (purchaseDate.isBefore(threeDaysAgo) || purchaseDate.isAfter(now)) {
+        if (purchaseDate.isBefore(threeDaysAgo)) {
             throw new RuntimeException("Items purchased more than 3 days ago are not eligible for refund.");
         }
 
@@ -220,5 +231,10 @@ public class OrderServiceImpl implements OrderService {
         } else {
             throw new EntityNotFoundException("Order with id " + id + " not found");
         }
+    }
+
+    @Override
+    public List<Object[]> getTopSellItemsForToday() {
+        return orderDetailsRepo.findTopSellingItemForToday();
     }
 }

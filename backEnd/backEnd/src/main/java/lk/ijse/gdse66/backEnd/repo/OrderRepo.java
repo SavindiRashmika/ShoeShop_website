@@ -16,6 +16,13 @@ public interface OrderRepo extends JpaRepository<Sales, String> {
     @Query(value = "SELECT oid FROM sales ORDER BY oid DESC LIMIT 1", nativeQuery = true)
     String getLastIndex();
 
+    @Query(value = "SELECT COUNT(oid) FROM sales WHERE DATE(purchase_date) = CURDATE()", nativeQuery = true)
+    int getTodayOrders();
+
+    @Query(value = "SELECT * FROM sales s WHERE DATE(purchase_date) = CURDATE()", nativeQuery = true)
+    List<Sales> findAllSalesForToday();
+
+
    /* @Query(value = "SELECT SUM(total) FROM sales WHERE DATE(purchase_date) = CURDATE()", nativeQuery = true)
     Double getTodayIncome();
 

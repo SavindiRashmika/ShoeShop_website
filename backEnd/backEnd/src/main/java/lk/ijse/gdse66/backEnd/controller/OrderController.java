@@ -3,11 +3,15 @@ package lk.ijse.gdse66.backEnd.controller;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.SaleDTO;
+import lk.ijse.gdse66.backEnd.entity.SaleDetails;
+import lk.ijse.gdse66.backEnd.entity.Sales;
 import lk.ijse.gdse66.backEnd.service.OrderService;
 import lk.ijse.gdse66.backEnd.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -62,5 +66,28 @@ public class OrderController {
     @GetMapping(path = "/searchOrder")
     public SaleDTO searchOrder(String code){
         return orderService.searchOrder(code);
+    }
+
+
+    @GetMapping(path = "/todayOrders")
+    public ResponseUtil getTodayIncome() {
+        int todayOrders = orderService.getTodayOrders();
+        return new ResponseUtil("OK", "Successfully Loaded orders.", todayOrders);
+    }
+
+    @GetMapping(path = "/todayOrderQ")
+    public ResponseUtil getDayOrderQty() {
+        int todayOrderQ = orderService.getDayOrderQty();
+        return new ResponseUtil("OK", "Successfully Loaded orders.", todayOrderQ);
+    }
+
+    @GetMapping(path = "/TodayOrderDetails")
+    public ResponseUtil TodayOrderDetails() {
+        return new ResponseUtil("OK", "Successfully Loaded. :",  orderService.findAllSalesForToday());
+    }
+
+    @GetMapping("/topItems")
+    public List<Object[]> getTopSellingItems() {
+        return orderService.getTopSellItemsForToday();
     }
 }

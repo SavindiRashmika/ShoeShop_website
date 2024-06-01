@@ -72,4 +72,10 @@ public class EmployeeController {
         return service.employeeIdGenerate();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/empCount")
+    public @ResponseBody CustomDTO getCustomerCount() {
+        return service.getSumEmployee();
+    }
+
 }

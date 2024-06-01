@@ -7,4 +7,5 @@ public interface UserService {
     UserDetailsService userDetailService();
     UserDTO searchUser(String id);
     UserDTO searchUserNam(String name);
+    void deleteUser(String email);
 }

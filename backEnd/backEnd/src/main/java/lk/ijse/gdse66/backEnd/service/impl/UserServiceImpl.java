@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user, UserDTO.class);
 
     }
+
+    @Override
+    public void deleteUser(String email) {
+        userRepo.deleteById(email);
+    }
 }

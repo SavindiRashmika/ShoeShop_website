@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.backEnd.service.impl;
 
+import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -75,5 +77,21 @@ public class ItemServiceImpl implements ItemService {
     public ArrayList<ItemDTO> loadAllItem() {
         return mapper.map(itemRepo.findAll(), new TypeToken<ArrayList<ItemDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public CustomDTO getItemCount() {
+        return new CustomDTO(itemRepo.getItemCount());
+    }
+
+    @Override
+    public Double getTodayExpectedProfit() {
+        LocalDate today = LocalDate.now();
+        return itemRepo.findTodayExpectedProfit(today);
+    }
+
+    @Override
+    public CustomDTO getItemQty() {
+        return new CustomDTO(itemRepo.getItemQty());
     }
 }

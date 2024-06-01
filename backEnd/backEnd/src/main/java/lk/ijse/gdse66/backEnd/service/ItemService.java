@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.backEnd.service;
 
+import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 
 import java.util.ArrayList;
@@ -12,4 +13,8 @@ public interface ItemService {
     ItemDTO searchItemId(String code, String name);
     ItemDTO searchItemId(String code);
     ArrayList<ItemDTO> loadAllItem();
+    CustomDTO getItemCount();
+    Double getTodayExpectedProfit();
+
+    CustomDTO getItemQty();
 }

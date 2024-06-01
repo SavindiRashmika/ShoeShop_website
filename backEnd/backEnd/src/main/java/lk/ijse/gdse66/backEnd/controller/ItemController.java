@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.backEnd.controller;
 
 
+import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.ItemDTO;
 import lk.ijse.gdse66.backEnd.entity.Supplier;
 import lk.ijse.gdse66.backEnd.service.ItemService;
@@ -69,4 +70,24 @@ public class ItemController {
     public ItemDTO searchItemId(@RequestParam String code, @RequestParam String name){
         return itemService.searchItemId(code, name); // Adjusted method call
     }
+
+
+    @GetMapping("/todayExpectedProfit")
+    public Double getTodayExpectedProfit() {
+        return itemService.getTodayExpectedProfit();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/itemCount")
+    public @ResponseBody CustomDTO getItemCount() {
+        return itemService.getItemCount();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping(path = "/itemQty")
+    public @ResponseBody CustomDTO getItemQty() {
+        return itemService.getItemQty();
+    }
+
+
 }

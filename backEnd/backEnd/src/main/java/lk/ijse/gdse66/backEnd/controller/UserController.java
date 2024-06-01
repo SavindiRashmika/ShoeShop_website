@@ -6,6 +6,7 @@ import lk.ijse.gdse66.backEnd.auth.response.JwtAuthResponse;
 import lk.ijse.gdse66.backEnd.dto.UserDTO;
 import lk.ijse.gdse66.backEnd.service.AuthenticationService;
 import lk.ijse.gdse66.backEnd.service.UserService;
+import lk.ijse.gdse66.backEnd.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,10 @@ public class UserController {
         return userService.searchUserNam(name);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping
+    public ResponseUtil deleteItem(@RequestParam String email){
+        userService.deleteUser(email);
+        return new ResponseUtil("200", "Successfully Deleted. ",null);
+    }
 }

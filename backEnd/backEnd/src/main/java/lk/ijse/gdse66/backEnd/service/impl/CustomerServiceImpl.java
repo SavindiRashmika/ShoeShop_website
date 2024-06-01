@@ -2,12 +2,7 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.CustomerDTO;
-import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
-import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
 import lk.ijse.gdse66.backEnd.entity.Customer;
-import lk.ijse.gdse66.backEnd.entity.Employee;
-import lk.ijse.gdse66.backEnd.entity.Supplier;
-import lk.ijse.gdse66.backEnd.enums.Level;
 import lk.ijse.gdse66.backEnd.repo.CustomerRepo;
 import lk.ijse.gdse66.backEnd.service.CustomerService;
 import org.modelmapper.ModelMapper;
@@ -83,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO getSumCustomer() {
-        return null;
+    public CustomDTO getSumCustomer() {
+        return new CustomDTO(customerRepo.getCustomerCount());
     }
 }

@@ -3,7 +3,6 @@ package lk.ijse.gdse66.backEnd.service.impl;
 
 import lk.ijse.gdse66.backEnd.dto.CustomDTO;
 import lk.ijse.gdse66.backEnd.dto.EmployeeDTO;
-import lk.ijse.gdse66.backEnd.dto.SupplierDTO;
 import lk.ijse.gdse66.backEnd.entity.Employee;
 import lk.ijse.gdse66.backEnd.repo.EmployeeRepo;
 import lk.ijse.gdse66.backEnd.service.EmployeeService;
@@ -84,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO getSumEmployee() {
-        return null;
+    public CustomDTO getSumEmployee() {
+        return new CustomDTO(employeeRepo.getEmpCount());
     }
 }

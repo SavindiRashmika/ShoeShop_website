@@ -19,5 +19,5 @@ public interface EmployeeService {
 
     @ResponseBody
     CustomDTO employeeIdGenerate();
-    EmployeeDTO getSumEmployee();
+    CustomDTO getSumEmployee();
 }
