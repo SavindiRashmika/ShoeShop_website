@@ -12,11 +12,7 @@ public interface OrderDetailsRepo extends JpaRepository<SaleDetails, String> {
     @Query(value = "SELECT SUM(d.qty) FROM sale_details d JOIN sales s ON d.oid = s.oid WHERE DATE(s.purchase_date) = CURDATE()", nativeQuery = true)
     Integer getDayOrderQty();
 
-    /*@Query(value = "SELECT sd.item_code, SUM(sd.qty) as totalQty " +
-            "FROM sale_details sd " +
-            "JOIN sales s ON sd.oid = s.oid WHERE DATE(s.purchase_date) = CURDATE() " +
-            "GROUP BY sd.item_code " +
-            "ORDER BY totalQty DESC", nativeQuery = true)*/
+
     @Query(value = "SELECT i.name, SUM(sd.qty) as totalQty " +
             "FROM sale_details sd " +
             "JOIN sales s ON sd.oid = s.oid " +
